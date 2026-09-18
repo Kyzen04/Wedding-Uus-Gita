@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uus & Gita Wedding</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
+
+  <!-- Container Efek Love Berjatuhan -->
+  <div id="hearts-container"></div>
+
+  <!-- Audio Background -->
+  <audio id="bg-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Tombol Musik Melayang -->
+  <button id="music-btn" class="floating-music" onclick="toggleMusic()">
+    <i class="fa-solid fa-music"></i>
+  </button>
+
+  <!-- Bottom Navigation Bar (10 Slide) -->
+  <nav class="bottom-nav">
+    <a href="#slide-1" class="nav-item active" title="Cover"><i class="fa-solid fa-house"></i></a>
+    <a href="#slide-2" class="nav-item" title="Verse"><i class="fa-solid fa-quote-left"></i></a>
+    <a href="#slide-3" class="nav-item" title="Mempelai"><i class="fa-solid fa-user-group"></i></a>
+    <a href="#slide-4" class="nav-item" title="Kalender"><i class="fa-regular fa-calendar-days"></i></a>
+    <a href="#slide-5" class="nav-item" title="Countdown"><i class="fa-regular fa-clock"></i></a>
+    <a href="#slide-6" class="nav-item" title="Lokasi"><i class="fa-solid fa-location-dot"></i></a>
+    <a href="#slide-7" class="nav-item" title="Media"><i class="fa-solid fa-video"></i></a>
+    <a href="#slide-8" class="nav-item" title="Galeri"><i class="fa-regular fa-image"></i></a>
+    <a href="#slide-9" class="nav-item" title="RSVP"><i class="fa-regular fa-comment-dots"></i></a>
+    <a href="#slide-10" class="nav-item" title="Hadiah"><i class="fa-solid fa-gift"></i></a>
+  </nav>
+
+  <!-- SLIDE 1: Cover Utama -->
+  <section id="slide-1" class="cover-section">
+    <div class="cover-content">
+      <p class="subtitle-doodle">THE WEDDING OF</p>
+      <h1 class="main-title">Uus & Gita</h1>
+      
+      <div class="couple-photo-wrapper">
+        <img src="Galery/Salinan Gita & Uus 32.jpg" alt="Uus & Gita" class="couple-img">
+      </div>
+
+      <div class="ribbon-date">
+        <span>02.10.2026</span>
+      </div>
+
+      <p class="opening-text">
+        Tanpa mengurangi rasa hormat, kami memberikan kabar bahagia ini dan memohon restu dari Bapak/Ibu/Saudara/i untuk senantiasa mendoakan kelancaran acara pernikahan kami.
+      </p>
+
+      <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+    </div>
+  </section>
+
+  <!-- Konten Utama (Scroll Snap 10 Slide) -->
+  <main id="main-content" class="main-container">
+    <div class="scroll-container">
+
+      <!-- SLIDE 2: Verse / Ayat -->
+      <section id="slide-2" class="full-slide">
+        <div class="polaroid-wrapper">
+          <div class="polaroid">
+            <img src="Galery/Salinan Gita & Uus 37.jpg" alt="Gita">
+          </div>
+          <div class="polaroid">
+            <img src="Galery/Salinan Gita & Uus 38.jpg" alt="Uus">
+          </div>
+        </div>
+        <p class="initials">G + U = ♡</p>
+        <div class="rings-doodle">💍</div>
+        <h2 class="slide-title">Forever & Always</h2>
+        <p class="verse-text">
+          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..." (QS. Ar-Rum: 21)
+        </p>
+      </section>
+
+      <!-- SLIDE 3: Groom & Bride -->
+      <section id="slide-3" class="full-slide">
+        <h2 class="slide-title">GROOM & BRIDE</h2>
+
+        <div class="profile-card">
+          <div class="oval-frame">
+            <img src="Galery/Salinan Gita & Uus 23.jpg" alt="Uus Busrol karim">
+          </div>
+          <h3 class="person-name">Uus Busrol karim</h3>
+          <p class="person-sub">Son of</p>
+          <p class="parents-text">Bapak Karmin (kuming)<br>& Ibu Mamah</p>
+          <p class="ig-tag"><i class="fa-brands fa-instagram"></i> @momenkasih</p>
+        </div>
+
+        <span class="ampersand-doodle">&</span>
+
+        <div class="profile-card">
+          <div class="oval-frame">
+            <img src="Galery/Salinan Gita & Uus 21.jpg" alt="Gita">
+          </div>
+          <h3 class="person-name">Gita</h3>
+          <p class="person-sub">Daughter of</p>
+          <p class="parents-text">Bapak Dudin cahyudin (Ade)<br>& Ibu Sri sutini</p>
+          <p class="ig-tag"><i class="fa-brands fa-instagram"></i> @momenkasih</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Save The Date (Calendar) -->
+      <section id="slide-4" class="full-slide">
+        <h2 class="slide-title">Save The Date</h2>
+        <div class="calendar-card">
+          <div class="calendar-header">October 2026</div>
+          <div class="calendar-grid">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            <span></span><span></span><span></span><span>1</span><span class="heart-date">2</span><span>3</span><span>4</span>
+            <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+            <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+            <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+            <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+          </div>
+        </div>
+        <button class="btn-action">Add to Calendar</button>
+      </section>
+
+      <!-- SLIDE 5: Counting Down -->
+      <section id="slide-5" class="full-slide">
+        <h2 class="slide-title">Counting Down</h2>
+        <div class="envelope-wrapper">
+          <div class="envelope-body">
+            <div class="envelope-card">
+              <div class="countdown-row">
+                <div><span id="days">00</span><small>DAYS</small></div>
+                <div>:</div>
+                <div><span id="hours">00</span><small>HOURS</small></div>
+                <div>:</div>
+                <div><span id="minutes">00</span><small>MIN</small></div>
+                <div>:</div>
+                <div><span id="seconds">00</span><small>SEC</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: Wedding Event (Koordinat Maps Baru) -->
+      <section id="slide-6" class="full-slide">
+        <div class="flower-doodle">💐</div>
+        <h2 class="slide-title">Wedding Event</h2>
+
+        <div class="doodle-card">
+          <h3 class="card-subtitle">Akad & Resepsi</h3>
+          <p class="event-date">Friday, 02 October 2026</p>
+          <p><i class="fa-solid fa-location-dot icon-maroon"></i> <strong>Lokasi Acara</strong></p>
+          <p class="address-text">Jl. Teratai Dukuhpari RT18 RW 07 Desa Leuwiseeng, Kec.Panyingkiran</p>
+          <p><i class="fa-regular fa-clock icon-maroon"></i> 08:00 WIB - Selesai</p>
+          
+          <div class="dresscode-box">
+            <p></p>
+            <div class="color-dots"><span class="dot dot-cream"></span><span class="dot dot-gold"></span></div>
+          </div>
+
+          <div class="map-box">
+            <iframe class="map-iframe" src="https://maps.google.com/maps?q=-6.8009976,108.1724479&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+
+          <a href="https://www.google.com/maps/search/?api=1&query=-6.8009976,108.1724479" target="_blank" class="btn-olive">View Location</a>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: Media Event -->
+      <section id="slide-7" class="full-slide">
+        <div class="camera-doodle">📷</div>
+        <h2 class="slide-title">Media Event</h2>
+
+        <div class="media-card">
+          <i class="fa-solid fa-video icon-large"></i>
+          <h3>Live Streaming</h3>
+          <p>Bergabunglah dengan kami secara virtual</p>
+          <button class="btn-olive">Tonton Sekarang <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </div>
+
+        <div class="media-card">
+          <i class="fa-brands fa-instagram icon-large"></i>
+          <h3>Wedding Filter</h3>
+          <p>Abadikan momen bahagiamu</p>
+          <button class="btn-olive">Use Instagram Filter <i class="fa-brands fa-instagram"></i></button>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: Our Memories (1 Landscape & 4 Portrait) -->
+      <section id="slide-8" class="full-slide">
+        <h2 class="slide-title">Our Memories</h2>
+        <div class="gallery-grid">
+          <!-- Foto Atas (Landscape) -->
+          <div class="grid-item full-width">
+            <img src="Galery/Salinan Gita & Uus 28.jpg" alt="Memory 1">
+          </div>
+          <!-- 4 Foto Bawah (Portrait) -->
+          <div class="grid-item portrait">
+            <img src="Galery/Salinan Gita & Uus 24.jpg" alt="Memory 2">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/Salinan Gita & Uus 22.jpg" alt="Memory 3">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/Salinan Gita & Uus 18.jpg" alt="Memory 4">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/Salinan Gita & Uus 30.jpg" alt="Memory 5">
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: Wishes / RSVP -->
+      <section id="slide-9" class="full-slide">
+        <h2 class="slide-title">Wishes</h2>
+        <p class="sub-text">Confirm your presence & send prayers.</p>
+
+        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Terima kasih atas ucapan & konfirmasinya!');">
+          <label>FULL NAME</label>
+          <input type="text" placeholder="Type your name" required>
+
+          <label>ATTENDANCE</label>
+          <select>
+            <option>Yes, I will attend</option>
+            <option>Sorry, I cannot attend</option>
+          </select>
+
+          <label>GUESTS</label>
+          <select>
+            <option>1 Person</option>
+            <option>2 Persons</option>
+          </select>
+
+          <label>MESSAGE</label>
+          <textarea rows="3" placeholder="Write your prayers..."></textarea>
+
+          <button type="submit" class="btn-action">Send Wish</button>
+        </form>
+      </section>
+
+      <!-- SLIDE 10: Wedding Gift -->
+      <section id="slide-10" class="full-slide">
+        <div class="gift-doodle">🎁</div>
+        <h2 class="slide-title">Wedding Gift</h2>
+        <p class="opening-text">Your presence is the greatest gift. However, if you wish to honor us with a gift, a digital envelope is available.</p>
+
+        <div class="bank-card">
+          <p class="bank-title">BCA</p>
+          <p id="rekening-bca" class="rekening-num">1234567890</p>
+          <p class="holder-name">a.n GITA</p>
+          <button class="btn-copy" onclick="copyText('1234567890')"><i class="fa-regular fa-copy"></i> Copy Number</button>
+        </div>
+
+        <div class="bank-card">
+          <p class="bank-title">MANDIRI</p>
+          <p id="rekening-mandiri" class="rekening-num">0987654321</p>
+          <p class="holder-name">a.n UUS BUSROL KARIM</p>
+          <button class="btn-copy" onclick="copyText('0987654321')"><i class="fa-regular fa-copy"></i> Copy Number</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

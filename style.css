@@ -1,0 +1,444 @@
+:root {
+  --bg-cream: #F4EFE0;
+  --maroon: #8B263E;
+  --green-olive: #5B623A;
+  --text-dark: #4A443B;
+  --font-handwritten: 'Patrick Hand', cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-handwritten);
+  background-color: var(--bg-cream);
+  color: var(--maroon);
+  font-size: 18px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Container Efek Love Berjatuhan */
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 101;
+  overflow: hidden;
+}
+
+.falling-heart {
+  position: absolute;
+  top: -40px;
+  user-select: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-40px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+/* Navigasi Melayang Bawah */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--maroon);
+  padding: 10px 18px;
+  border-radius: 30px;
+  display: flex;
+  gap: 12px;
+  z-index: 99;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-item {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-item.active, .nav-item:hover {
+  color: #FFFFFF;
+}
+
+.floating-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2D2D2D;
+  color: white;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  z-index: 99;
+  cursor: pointer;
+}
+
+/* Cover Section */
+.cover-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-cream);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.cover-zoom-out {
+  transform: scale(1.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.subtitle-doodle {
+  letter-spacing: 4px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main-title {
+  font-size: 2.8rem;
+  color: var(--green-olive);
+  margin: 10px 0 20px;
+}
+
+.couple-photo-wrapper {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 15px;
+  border: 3px solid var(--maroon);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.couple-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ribbon-date {
+  background-color: var(--maroon);
+  color: white;
+  display: inline-block;
+  padding: 6px 30px;
+  border-radius: 4px;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.opening-text {
+  font-size: 15px;
+  color: var(--text-dark);
+  max-width: 320px;
+  margin: 0 auto 15px;
+  line-height: 1.4;
+}
+
+.btn-open, .btn-action {
+  background-color: var(--maroon);
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-family: var(--font-handwritten);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Main Container & Scroll Snap */
+.main-container {
+  max-width: 450px;
+  margin: 0 auto;
+  background-color: var(--bg-cream);
+  min-height: 100vh;
+}
+
+.scroll-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.full-slide {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  padding: 30px 20px 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.slide-title {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+/* Polaroid (Slide 2) */
+.polaroid-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.polaroid {
+  background: white;
+  padding: 8px 8px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: rotate(-5deg);
+}
+
+.polaroid:nth-child(2) {
+  transform: rotate(5deg);
+}
+
+.polaroid img {
+  width: 110px;
+  height: 130px;
+  object-fit: cover;
+}
+
+.verse-text {
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+/* Profile Card (Slide 3) */
+.oval-frame {
+  width: 120px;
+  height: 150px;
+  border: 2px dashed var(--maroon);
+  border-radius: 50%;
+  padding: 4px;
+  margin: 0 auto 5px;
+}
+
+.oval-frame img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.person-name { font-size: 1.6rem; }
+.person-sub, .parents-text { font-size: 14px; color: var(--text-dark); }
+.ig-tag { font-size: 13px; color: var(--green-olive); }
+
+/* Calendar Card (Slide 4) */
+.calendar-card {
+  border: 2px solid var(--maroon);
+  border-radius: 20px;
+  padding: 15px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 15px;
+}
+
+.calendar-header {
+  background: var(--maroon);
+  color: white;
+  padding: 4px 20px;
+  border-radius: 15px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.heart-date {
+  background-color: var(--maroon);
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Envelope Countdown (Slide 5) */
+.envelope-wrapper {
+  margin-top: 20px;
+}
+
+.envelope-body {
+  width: 260px;
+  height: 150px;
+  background-color: var(--maroon);
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-card {
+  background: var(--bg-cream);
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.countdown-row {
+  display: flex;
+  gap: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.countdown-row small {
+  display: block;
+  font-size: 8px;
+}
+
+/* Doodle Cards (Slide 6 & 7 & 10) */
+.doodle-card, .media-card, .bank-card {
+  border: 3px solid var(--maroon);
+  border-radius: 25px 5px 25px 5px;
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 12px;
+  background-color: #FAF6ED;
+}
+
+/* Styling Google Maps Interaktif (Slide 6) */
+.map-box {
+  width: 100%;
+  height: 160px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid var(--maroon);
+  margin: 12px 0;
+  position: relative;
+  touch-action: auto;
+}
+
+.map-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: auto;
+}
+
+.btn-olive {
+  background-color: var(--green-olive);
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 12px;
+  font-family: var(--font-handwritten);
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-copy {
+  background-color: var(--green-olive);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 12px;
+  font-family: var(--font-handwritten);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Form RSVP (Slide 9) */
+.rsvp-form {
+  border: 2px solid var(--maroon);
+  padding: 15px;
+  width: 100%;
+  text-align: left;
+}
+
+.rsvp-form label {
+  font-size: 11px;
+  color: var(--maroon);
+  display: block;
+  margin-top: 8px;
+}
+
+.rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  background-color: #FAF6ED;
+  font-family: var(--font-handwritten);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+/* Gallery Grid (Slide 8 - 1 Landscape & 4 Portrait) */
+#slide-8 {
+  justify-content: flex-start;
+  padding-top: 40px;
+  overflow-y: auto;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 380px;
+  margin-top: 15px;
+}
+
+.grid-item.full-width {
+  flex: 1 1 100%;
+  height: 160px;
+}
+
+.grid-item.portrait {
+  flex: 1 1 calc(50% - 5px);
+  height: 280px;
+}
+
+.grid-item {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
