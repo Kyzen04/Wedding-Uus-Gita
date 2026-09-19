@@ -199,7 +199,7 @@ img {
   height: 220px;
   margin: 0 auto 10px;
   border: 2px solid var(--maroon);
-  border-radius: 50%;
+  border-radius: 0%;
   overflow: hidden;
   position: relative;
   z-index: 2;
