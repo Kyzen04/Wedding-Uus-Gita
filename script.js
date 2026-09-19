@@ -151,45 +151,50 @@ function capturePhoto() {
 
   if (!video.srcObject) return;
 
-  // PAKSA UKURAN KANVAS MENJADI VERTIKAL/POTRET (4:5) AGAR TIDAK JADI 4:3 DI DRIVE
-  canvas.width = 1080;
-  canvas.height = 1350;
+  // Ukuran kanvas dipaksa murni vertikal (potret)
+  canvas.width = 720;
+  canvas.height = 960;
   const ctx = canvas.getContext('2d');
 
-  // Ambil bagian tengah video agar pas dipotong vertikal (mencegah gepeng/distorsi)
   const vWidth = video.videoWidth;
   const vHeight = video.videoHeight;
-  const targetAspect = 1080 / 1350;
-  let sWidth = vWidth;
-  let sHeight = vWidth / targetAspect;
-  let sX = 0;
-  let sY = (vHeight - sHeight) / 2;
-
-  if (sHeight > vHeight) {
+  let sWidth, sHeight, sX, sY;
+  
+  if (vWidth > vHeight) {
     sHeight = vHeight;
-    sWidth = vHeight * targetAspect;
+    sWidth = vHeight * (720 / 960);
     sX = (vWidth - sWidth) / 2;
     sY = 0;
+  } else {
+    sWidth = vWidth;
+    sHeight = vWidth * (960 / 720);
+    sX = 0;
+    sY = (vHeight - sHeight) / 2;
+    if (sY < 0) {
+      sHeight = vHeight;
+      sWidth = vHeight * (720 / 960);
+      sX = (vWidth - sWidth) / 2;
+      sY = 0;
+    }
   }
 
-  // Gambar potongan video vertikal ke kanvas
   ctx.drawImage(video, sX, sY, sWidth, sHeight, 0, 0, canvas.width, canvas.height);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   // Tambahkan Stiker / Watermark
   ctx.fillStyle = "rgba(139, 38, 62, 0.9)";
-  ctx.fillRect(40, canvas.height - 180, canvas.width - 80, 130);
+  ctx.fillRect(30, canvas.height - 150, canvas.width - 60, 110);
 
   ctx.fillStyle = "#fef3d6";
-  ctx.font = "26px sans-serif";
+  ctx.font = "20px sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("✨ Happy Wedding ✨", canvas.width / 2, canvas.height - 130);
+  ctx.fillText("✨ Happy Wedding ✨", canvas.width / 2, canvas.height - 110);
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 36px 'Poppins', sans-serif";
-  ctx.fillText("Uus & Gita", canvas.width / 2, canvas.height - 85);
+  ctx.font = "bold 28px 'Poppins', sans-serif";
+  ctx.fillText("Uus & Gita", canvas.width / 2, canvas.height - 75);
 
-  ctx.font = "24px sans-serif";
+  ctx.font = "18px sans-serif";
   ctx.fillText("02.10.2026", canvas.width / 2, canvas.height - 45);
 
   const dataURL = canvas.toDataURL('image/png');
@@ -251,7 +256,6 @@ function handleRSVP(event) {
   const guests = guestsInput ? guestsInput.value : "1 Orang";
   const message = messageInput ? messageInput.value : "";
 
-  // Kirim data RSVP menggunakan format JSON stabil
   if (GOOGLE_DRIVE_WEB_APP_URL && !GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
     const rsvpPayload = {
       name: name,
