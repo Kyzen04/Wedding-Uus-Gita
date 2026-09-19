@@ -256,24 +256,24 @@
         <h2 class="slide-title">Wishes</h2>
         <p class="sub-text">Confirm your presence & send prayers.</p>
 
-        <form class="rsvp-form" onsubmit="event.preventDefault(); alert('Terima kasih atas ucapan & konfirmasinya!');">
+        <form class="rsvp-form" id="rsvp-form" onsubmit="handleRSVP(event)">
           <label>FULL NAME</label>
-          <input type="text" placeholder="Type your name" required>
+          <input type="text" id="rsvp-name" placeholder="Type your name" required>
 
           <label>ATTENDANCE</label>
-          <select>
-            <option>Yes, I will attend</option>
-            <option>Sorry, I cannot attend</option>
+          <select id="rsvp-attendance">
+            <option value="Yes">Yes, I will attend</option>
+            <option value="No">Sorry, I cannot attend</option>
           </select>
 
           <label>GUESTS</label>
-          <select>
-            <option>1 Person</option>
-            <option>2 Persons</option>
+          <select id="rsvp-guests">
+            <option value="1 Person">1 Person</option>
+            <option value="2 Persons">2 Persons</option>
           </select>
 
           <label>MESSAGE</label>
-          <textarea rows="3" placeholder="Write your prayers..."></textarea>
+          <textarea id="rsvp-message" rows="3" placeholder="Write your prayers..."></textarea>
 
           <button type="submit" class="btn-action">Send Wish</button>
         </form>
@@ -314,6 +314,43 @@
 
     </div>
   </main>
+
+  <!-- MODAL POPUP E-ID CARD OTOMATIS -->
+  <div id="idcard-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      
+      <div id="e-card" class="id-card-body">
+        <div class="card-header">
+          <p class="card-sub">WEDDING PASS</p>
+          <h3 class="card-title">Uus & Gita</h3>
+        </div>
+        
+        <div class="card-guest-info">
+          <p class="info-label">GUEST NAME</p>
+          <h4 id="card-guest-name">Nama Tamu</h4>
+          
+          <div class="card-row">
+            <div>
+              <p class="info-label">GUESTS</p>
+              <p id="card-guest-count" class="info-val">1 Person</p>
+            </div>
+            <div>
+              <p class="info-label">DATE</p>
+              <p class="info-val">02.10.2026</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=UusGitaWedding" alt="QR Code">
+          <p class="qr-text">Tunjukkan kartu ini saat tiba di lokasi</p>
+        </div>
+      </div>
+
+      <p class="save-tip">Silakan Screenshot E-Card ini sebagai bukti kehadiran.</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
