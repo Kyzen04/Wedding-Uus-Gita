@@ -432,7 +432,7 @@ img {
 .cam-box {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 380px !important; /* Diubah jadi lebih tinggi (sebelumnya 190px) */
   background: #ffffff;
   border: 6px solid #FAF6ED !important;
   border-radius: 16px !important;
