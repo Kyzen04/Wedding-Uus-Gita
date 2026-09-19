@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -270,24 +270,38 @@
         </form>
       </section>
 
-      <!-- SLIDE 10: Wedding Gift -->
+      <!-- SLIDE 10: Wedding Gift (Gaya Kartu ATM) -->
       <section id="slide-10" class="full-slide">
         <div class="gift-doodle">🎁</div>
         <h2 class="slide-title">Wedding Gift</h2>
-        <p class="opening-text">Your presence is the greatest gift. However, if you wish to honor us with a gift, a digital envelope is available.</p>
+        <p class="opening-text">
+          Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
+        </p>
 
-        <div class="bank-card">
-          <p class="bank-title">BCA</p>
-          <p id="rekening-bca" class="rekening-num">1234567890</p>
-          <p class="holder-name">a.n GITA</p>
-          <button class="btn-copy" onclick="copyText('1234567890')"><i class="fa-regular fa-copy"></i> Copy Number</button>
+        <!-- KARTU BCA -->
+        <div class="atm-card bca-bg">
+          <div class="card-chip"></div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" class="bank-logo-img" alt="BCA">
+          <div class="card-details">
+            <p class="holder-name">GITA</p>
+            <p id="rekening-bca" class="rekening-num">1234567890</p>
+          </div>
+          <button class="btn-copy-card" onclick="copyText('1234567890')">
+            Salin <i class="fa-regular fa-copy"></i>
+          </button>
         </div>
 
-        <div class="bank-card">
-          <p class="bank-title">MANDIRI</p>
-          <p id="rekening-mandiri" class="rekening-num">0987654321</p>
-          <p class="holder-name">a.n UUS BUSROL KARIM</p>
-          <button class="btn-copy" onclick="copyText('0987654321')"><i class="fa-regular fa-copy"></i> Copy Number</button>
+        <!-- KARTU MANDIRI -->
+        <div class="atm-card mandiri-bg">
+          <div class="card-chip"></div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" class="bank-logo-img" alt="Mandiri">
+          <div class="card-details">
+            <p class="holder-name">UUS BUSROL KARIM</p>
+            <p id="rekening-mandiri" class="rekening-num">0987654321</p>
+          </div>
+          <button class="btn-copy-card" onclick="copyText('0987654321')">
+            Salin <i class="fa-regular fa-copy"></i>
+          </button>
         </div>
       </section>
 
