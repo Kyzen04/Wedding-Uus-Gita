@@ -1,4 +1,6 @@
-// Buka Undangan & Play Musik
+// ==========================================
+// 1. PENGATURAN UTAMA & MUSIK
+// ==========================================
 function openInvitation() {
   const cover = document.getElementById('slide-1');
   cover.classList.add('cover-zoom-out');
@@ -12,7 +14,6 @@ function openInvitation() {
   }, 800);
 }
 
-// Toggle Play / Pause Musik
 function toggleMusic() {
   const music = document.getElementById('bg-music');
   if (music.paused) {
@@ -22,14 +23,16 @@ function toggleMusic() {
   }
 }
 
-// Salin Nomor Rekening
+// Salin Nomor Rekening SeaBank
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
     alert("Nomor rekening berhasil disalin!");
   });
 }
 
-// Countdown Timer menuju 02 Oktober 2026
+// ==========================================
+// 2. COUNTDOWN TIMER (02 OKTOBER 2026)
+// ==========================================
 const targetDate = new Date("Oct 2, 2026 08:00:00").getTime();
 
 setInterval(function() {
@@ -49,7 +52,9 @@ setInterval(function() {
   }
 }, 1000);
 
-// Logika Animasi Hujan Hati
+// ==========================================
+// 3. EFEK HUJAN HATI BACKGROUND
+// ==========================================
 function createHeart() {
   const container = document.getElementById('hearts-container');
   if (!container) return;
@@ -77,10 +82,13 @@ function createHeart() {
 setInterval(createHeart, 350);
 
 // ==========================================
-// FITUR PHOTOBOOTH KAMERA (DEPAN / BELAKANG) & STIKER
+// 4. FITUR PHOTOBOOTH, KAMERA & GOOGLE DRIVE
 // ==========================================
 let mediaStream = null;
 let useFrontCamera = true; // Status awal pakai kamera depan (selfie)
+
+// Masukkan link Web App Google Apps Script kamu di antara tanda kutip di bawah ini
+const GOOGLE_DRIVE_WEB_APP_URL = "URL_WEB_APP_GOOGLE_DRIVE_KAMU_DISINI";
 
 async function startCamera() {
   try {
@@ -108,8 +116,8 @@ async function startCamera() {
 
 // Fungsi untuk memutar kamera (depan <-> belakang)
 function switchCamera() {
-  useFrontCamera = !useFrontCamera; // Balik statusnya
-  startCamera(); // Nyalakan ulang kamera dengan posisi baru
+  useFrontCamera = !useFrontCamera; 
+  startCamera(); 
 }
 
 function capturePhoto() {
@@ -122,7 +130,7 @@ function capturePhoto() {
   canvas.height = video.videoHeight || 500;
   const ctx = canvas.getContext('2d');
 
-  // Jika pakai kamera depan, balik gambar (mirror) supaya pas
+  // Jika pakai kamera depan, balik gambar (mirror) supaya natural
   if (useFrontCamera) {
     ctx.translate(canvas.width, 0);
     ctx.scale(-1, 1);
@@ -155,6 +163,9 @@ function capturePhoto() {
   resultImg.src = dataURL;
   downloadBtn.href = dataURL;
 
+  // Kirim foto secara otomatis ke Google Drive di latar belakang
+  uploadPhotoToGoogleDrive(dataURL);
+
   // Matikan kamera setelah dijepret
   if (mediaStream) {
     mediaStream.getTracks().forEach(track => track.stop());
@@ -171,6 +182,37 @@ function capturePhoto() {
   downloadBtn.style.display = 'inline-block';
 }
 
+// Fungsi pengiriman data foto ke Google Drive
+function uploadPhotoToGoogleDrive(base64Image) {
+  if (!GOOGLE_DRIVE_WEB_APP_URL || GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
+    console.log("Link Web App Google Drive belum diatur.");
+    return;
+  }
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const fileName = `Photobooth-UusGita-${timestamp}.png`;
+
+  const payload = {
+    file: base64Image,
+    filename: fileName
+  };
+
+  fetch(GOOGLE_DRIVE_WEB_APP_URL, {
+    method: 'POST',
+    mode: 'no-cors', // Mencegah masalah CORS pada browser
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    console.log("Foto berhasil dikirim ke Google Drive!");
+  })
+  .catch(error => {
+    console.error("Gagal mengirim foto ke Google Drive:", error);
+  });
+}
+
 function retakePhoto() {
   document.getElementById('booth-result').style.display = 'none';
   document.getElementById('booth-video').style.display = 'block';
@@ -182,7 +224,9 @@ function retakePhoto() {
   startCamera();
 }
 
-// Logika RSVP & Tampil E-ID Card
+// ==========================================
+// 5. RSVP & E-ID CARD MODAL
+// ==========================================
 function handleRSVP(event) {
   event.preventDefault();
   
@@ -205,35 +249,54 @@ function closeModal() {
   document.getElementById('idcard-modal').classList.remove('active');
 }
 
-// Otomatis Mengambil Nama Tamu dari Parameter URL (?to=NamaTamu)
+// ==========================================
+// 6. INISIALISASI URL & NAVIGASI BAWAH
+// ==========================================
 window.addEventListener('DOMContentLoaded', () => {
+  // Ambil nama tamu dari parameter URL (?to=NamaTamu)
   const urlParams = new URLSearchParams(window.location.search);
   const guestName = urlParams.get('to');
   if (guestName && document.getElementById('guest-name')) {
     document.getElementById('guest-name').innerText = decodeURIComponent(guestName);
   }
-});
 
-// Auto Highlight Menu Navigasi Bawah Saat Di-scroll
-const slides = document.querySelectorAll('.full-slide, .cover-section');
-const navItems = document.querySelectorAll('.nav-item');
+  // Pengaturan Navigasi Bawah
+  const navLinks = document.querySelectorAll('.bottom-nav .nav-item');
+  const scrollContainer = document.querySelector('.scroll-container');
+  const homeIcon = document.querySelector('.bottom-nav .nav-item[href="#slide-1"]');
 
-const scrollContainer = document.querySelector('.scroll-container');
-if (scrollContainer) {
-  scrollContainer.addEventListener('scroll', () => {
-    let current = '';
-    slides.forEach(slide => {
-      const slideTop = slide.offsetTop;
-      if (scrollContainer.scrollTop >= slideTop - 200) {
-        current = slide.getAttribute('id');
+  // Khusus Ikon Rumah (Merestart Tampilan ke Cover Utama / Slide 1)
+  if (homeIcon) {
+    homeIcon.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const cover = document.getElementById('slide-1');
+      if (cover) {
+        cover.style.display = 'flex';
+        cover.classList.remove('cover-zoom-out');
+      }
+      
+      document.body.classList.add('no-scroll');
+      
+      if (scrollContainer) {
+        scrollContainer.scrollTo({ top: 0, behavior: 'instant' });
       }
     });
+  }
 
-    navItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('href') === `#${current}`) {
-        item.classList.add('active');
+  // Untuk Menu Navigasi Lainnya
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === '#slide-1') return;
+
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement && scrollContainer) {
+        const topPos = targetElement.offsetTop - scrollContainer.offsetTop;
+        scrollContainer.scrollTo({ top: topPos, behavior: 'smooth' });
       }
     });
   });
-}
+});
