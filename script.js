@@ -108,11 +108,10 @@ async function startCamera() {
       mediaStream.getTracks().forEach(track => track.stop());
     }
 
+    // Menggunakan constraints fleksibel agar kamera HP tidak terpaksa zoom berlebihan
     const constraints = {
       video: { 
-        facingMode: useFrontCamera ? 'user' : 'environment',
-        width: { ideal: 1080 },
-        height: { ideal: 1350 }
+        facingMode: useFrontCamera ? 'user' : 'environment'
       },
       audio: false
     };
@@ -158,14 +157,11 @@ function capturePhoto() {
   canvas.height = video.videoHeight || 1350;
   const ctx = canvas.getContext('2d');
 
-  if (useFrontCamera) {
-    ctx.translate(canvas.width, 0);
-    ctx.scale(-1, 1);
-  }
-
+  // Mirror dimatikan agar hasil jepretan normal dan tidak terbalik
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
+  // Tambahkan Stiker / Watermark "Happy Wedding"
   ctx.fillStyle = "rgba(139, 38, 62, 0.9)";
   ctx.fillRect(40, canvas.height - 180, canvas.width - 80, 130);
 
@@ -237,7 +233,7 @@ function handleRSVP(event) {
 
   const name = nameInput ? nameInput.value : "";
   const attendance = attendanceInput ? attendanceInput.value : "";
-  const guests = guestsInput ? guestsInput.value : "1";
+  const guests = guestsInput ? guestsInput.value : "1 Orang";
   const message = messageInput ? messageInput.value : "";
 
   if (GOOGLE_DRIVE_WEB_APP_URL && !GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
@@ -256,7 +252,7 @@ function handleRSVP(event) {
     }).catch(error => console.error(error));
   }
 
-  if (attendance === 'Yes' || attendance.includes('Hadir')) {
+  if (attendance.toLowerCase().includes('hadir') || attendance === 'Yes') {
     const guestNameEl = document.getElementById('card-guest-name');
     const guestCountEl = document.getElementById('card-guest-count');
     const modalEl = document.getElementById('idcard-modal');
