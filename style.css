@@ -23,6 +23,14 @@ body {
   overflow: hidden;
 }
 
+/* Mencegah gambar gepeng/melar di semua tipe layar HP */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Container Efek Love Berjatuhan */
 #hearts-container {
   position: fixed;
@@ -141,6 +149,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .ribbon-date {
@@ -228,6 +237,7 @@ body {
   width: 110px;
   height: 130px;
   object-fit: cover;
+  object-position: center;
 }
 
 .verse-text {
@@ -252,6 +262,7 @@ body {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
 }
 
 .person-name { font-size: 1.6rem; }
@@ -327,24 +338,33 @@ body {
   font-size: 8px;
 }
 
-/* Doodle Cards (Slide 6 & 7 & 10) */
+/* Doodle Cards (Slide 6, 7 & 10) */
 .doodle-card, .media-card, .bank-card {
   border: 3px solid var(--maroon);
   border-radius: 25px 5px 25px 5px;
   padding: 15px;
   width: 100%;
-  margin-bottom: 12px;
+  max-width: 380px;
+  margin-bottom: 15px;
   background-color: #FAF6ED;
+}
+
+/* Slide 6 (Dua Kartu Event Scrollable) */
+#slide-6 {
+  justify-content: flex-start;
+  padding-top: 30px;
+  padding-bottom: 90px;
+  overflow-y: auto;
 }
 
 /* Styling Google Maps Interaktif (Slide 6) */
 .map-box {
   width: 100%;
-  height: 160px;
+  height: 130px;
   border-radius: 15px;
   overflow: hidden;
   border: 2px solid var(--maroon);
-  margin: 12px 0;
+  margin: 10px 0;
   position: relative;
   touch-action: auto;
 }
@@ -421,24 +441,27 @@ body {
   margin-top: 15px;
 }
 
+.grid-item {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 1 Foto Atas (Landscape) */
 .grid-item.full-width {
   flex: 1 1 100%;
   height: 160px;
 }
 
+/* 4 Foto Bawah (Portrait Tegak) */
 .grid-item.portrait {
   flex: 1 1 calc(50% - 5px);
-  height: 280px;
-}
-
-.grid-item {
-  border-radius: 12px;
-  overflow: hidden;
+  height: 180px; /* Diubah dari 280px ke 180px agar tidak terlalu panjang dan muat dalam layar HP */
 }
 
 .grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 12px;
 }
