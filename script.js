@@ -91,7 +91,7 @@ let mediaStream = null;
 let useFrontCamera = true;
 
 // URL Web App Google Apps Script terbaru
-const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyIMOEz9cX0cdxhgNTULWYT-WFEzF5xe9ZduPxtKlBt_ptJfPtQC6O7X0TF8QpF-092/exec";
+const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxHmbv1Dj8WdO74T-MRDx-vXvFu4Od-FOS-A4dBTEoI_2UTekLPV_Exe3zWhi-nmAZc/exec";
 
 async function startCamera() {
   const video = document.getElementById('booth-video');
