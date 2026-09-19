@@ -14,7 +14,7 @@
 
 body {
   font-family: var(--font-handwritten);
-  background-color: var(--bg-cream);
+  background-color: #2D2D2D; /* Background luar layar HP (di laptop) */
   color: var(--maroon);
   font-size: 18px;
 }
@@ -55,7 +55,7 @@ img {
   100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
 }
 
-/* Navigasi Melayang Bawah */
+/* Navigasi Melayang Bawah (Selalu Pas di Tengah Layar HP) */
 .bottom-nav {
   position: fixed;
   bottom: 20px;
@@ -82,7 +82,7 @@ img {
 .floating-music {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: calc(50% - 215px); /* Menempel di sudut kanan container HP */
   background-color: #2D2D2D;
   color: white;
   border: none;
@@ -93,9 +93,24 @@ img {
   cursor: pointer;
 }
 
-/* Cover Section */
+@media (max-width: 450px) {
+  .floating-music { right: 15px; }
+}
+
+/* Main Container HP */
+.main-container {
+  max-width: 450px;
+  margin: 0 auto;
+  background-color: var(--bg-cream);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Cover Section (Terkunci Lebarnya Sesuai Container HP) */
 .cover-section {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -132,7 +147,7 @@ img {
 
 .couple-img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Pita Tanggal (Di Tengah) */
+/* Pita Tanggal & Nama Tamu (Rata Tengah) */
 .ribbon-date {
   background-color: var(--maroon);
   color: white;
@@ -144,7 +159,6 @@ img {
   font-size: 20px;
 }
 
-/* Kotak Nama Tamu (Di Bawah Tanggal, Rata Tengah) */
 .guest-container {
   display: block;
   width: fit-content;
@@ -184,15 +198,6 @@ img {
   cursor: pointer;
 }
 
-/* Main Container & Scroll Snap */
-.main-container {
-  max-width: 450px;
-  margin: 0 auto;
-  background-color: var(--bg-cream);
-  min-height: 100vh;
-  position: relative;
-}
-
 .scroll-container {
   width: 100%;
   height: 100vh;
@@ -217,38 +222,20 @@ img {
 
 .slide-title { font-size: 2.2rem; margin-bottom: 10px; }
 
-/* Bunga Asli PNG Melayang di 4 Pojok */
+/* Bunga Melayang di 4 Pojok Container HP */
 .floral-corner {
-  position: fixed;
-  width: 110px;
-  height: 110px;
+  position: absolute;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
   pointer-events: none;
   z-index: 10;
 }
 
-.top-left {
-  top: -10px;
-  left: 0;
-}
-
-.top-right {
-  top: -10px;
-  right: 0;
-  transform: scaleX(-1); /* Di-flip horizontal agar menghadap ke dalam */
-}
-
-.bottom-left {
-  bottom: -10px;
-  left: 0;
-  transform: scaleY(-1); /* Di-flip vertikal agar menghadap ke dalam */
-}
-
-.bottom-right {
-  bottom: -10px;
-  right: 0;
-  transform: rotate(180deg); /* Diputar agar menghadap ke dalam */
-}
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; transform: scaleX(-1); }
+.bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
+.bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
 
 /* Polaroid (Slide 2) */
 .polaroid-wrapper { display: flex; gap: 10px; justify-content: center; margin-bottom: 10px; }
