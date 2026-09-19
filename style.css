@@ -16,7 +16,7 @@ body {
   font-family: var(--font-handwritten);
   background-color: #2D2D2D;
   color: var(--maroon);
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .no-scroll {
@@ -62,17 +62,17 @@ img {
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--maroon);
-  padding: 8px 14px;
+  padding: 6px 12px;
   border-radius: 30px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   z-index: 99;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .nav-item {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 13px;
+  font-size: 12px;
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -86,12 +86,12 @@ img {
   background-color: #2D2D2D;
   color: white;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   z-index: 99;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 @media (max-width: 450px) {
@@ -122,7 +122,7 @@ img {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 15px;
+  padding: 12px;
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
@@ -132,14 +132,14 @@ img {
   pointer-events: none;
 }
 
-.subtitle-doodle { letter-spacing: 3px; font-size: 16px; font-weight: bold; }
-.main-title { font-size: 2.2rem; color: var(--green-olive); margin: 6px 0 12px; }
+.subtitle-doodle { letter-spacing: 2px; font-size: 14px; font-weight: bold; }
+.main-title { font-size: 1.8rem; color: var(--green-olive); margin: 4px 0 8px; }
 
 .couple-photo-wrapper {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 10px;
-  border: 3px solid var(--maroon);
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 8px;
+  border: 2px solid var(--maroon);
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -154,37 +154,37 @@ img {
   color: white;
   display: block;
   width: fit-content;
-  margin: 0 auto 10px;
-  padding: 4px 20px;
+  margin: 0 auto 8px;
+  padding: 3px 16px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .guest-container {
   display: block;
   width: fit-content;
   max-width: 90%;
-  margin: 0 auto 10px;
-  padding: 6px 14px;
+  margin: 0 auto 8px;
+  padding: 5px 12px;
   background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px dashed var(--maroon);
 }
 
-.guest-sub { font-size: 12px; color: var(--text-dark); margin-bottom: 2px; }
+.guest-sub { font-size: 11px; color: var(--text-dark); margin-bottom: 2px; }
 .guest-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--maroon);
   text-transform: capitalize;
 }
 
 .opening-text {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-dark);
-  max-width: 300px;
-  margin: 0 auto 12px;
+  max-width: 280px;
+  margin: 0 auto 10px;
   line-height: 1.3;
 }
 
@@ -192,10 +192,10 @@ img {
   background-color: var(--maroon);
   color: white;
   border: none;
-  padding: 6px 18px;
-  border-radius: 16px;
+  padding: 5px 16px;
+  border-radius: 14px;
   font-family: var(--font-handwritten);
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -212,7 +212,7 @@ img {
 .full-slide {
   min-height: 100vh;
   scroll-snap-align: start;
-  padding: 35px 15px 75px;
+  padding: 25px 12px 90px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -221,13 +221,13 @@ img {
   box-sizing: border-box;
 }
 
-.slide-title { font-size: 1.8rem; margin-bottom: 8px; }
+.slide-title { font-size: 1.5rem; margin-bottom: 6px; }
 
 /* Bunga Melayang di 4 Pojok Container HP */
 .floral-corner {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   pointer-events: none;
   z-index: 10;
@@ -240,77 +240,77 @@ img {
 .bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
 
 /* Polaroid (Slide 2) */
-.polaroid-wrapper { display: flex; gap: 8px; justify-content: center; margin-bottom: 8px; }
+.polaroid-wrapper { display: flex; gap: 6px; justify-content: center; margin-bottom: 6px; }
 .polaroid {
   background: white;
-  padding: 6px 6px 15px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transform: rotate(-4deg);
+  padding: 5px 5px 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transform: rotate(-3deg);
 }
-.polaroid:nth-child(2) { transform: rotate(4deg); }
-.polaroid img { width: 95px; height: 110px; object-fit: cover; }
-.verse-text { font-size: 13px; color: var(--text-dark); line-height: 1.3; margin-top: 8px; }
+.polaroid:nth-child(2) { transform: rotate(3deg); }
+.polaroid img { width: 80px; height: 95px; object-fit: cover; }
+.verse-text { font-size: 12px; color: var(--text-dark); line-height: 1.3; margin-top: 6px; max-width: 280px; }
 
 /* Profile Card (Slide 3) */
 .oval-frame {
-  width: 100px;
-  height: 125px;
-  border: 2px dashed var(--maroon);
+  width: 85px;
+  height: 105px;
+  border: 1.5px dashed var(--maroon);
   border-radius: 50%;
-  padding: 3px;
-  margin: 0 auto 4px;
+  padding: 2px;
+  margin: 0 auto 3px;
 }
 .oval-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.person-name { font-size: 1.3rem; }
-.person-sub, .parents-text { font-size: 13px; color: var(--text-dark); line-height: 1.2; }
-.ig-tag { font-size: 12px; color: var(--green-olive); margin-top: 2px; }
+.person-name { font-size: 1.1rem; }
+.person-sub, .parents-text { font-size: 11px; color: var(--text-dark); line-height: 1.2; }
+.ig-tag { font-size: 11px; color: var(--green-olive); margin-top: 2px; }
 
 /* Calendar Card (Slide 4) */
 .calendar-card {
-  border: 2px solid var(--maroon);
-  border-radius: 16px;
-  padding: 12px;
+  border: 1.5px solid var(--maroon);
+  border-radius: 14px;
+  padding: 10px;
   width: 100%;
-  max-width: 280px;
-  margin-bottom: 12px;
+  max-width: 250px;
+  margin-bottom: 10px;
   background: rgba(250, 246, 237, 0.85);
 }
-.calendar-header { background: var(--maroon); color: white; padding: 3px 16px; border-radius: 12px; display: inline-block; margin-bottom: 8px; font-size: 14px; }
-.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-size: 12px; color: var(--text-dark); }
+.calendar-header { background: var(--maroon); color: white; padding: 2px 12px; border-radius: 10px; display: inline-block; margin-bottom: 6px; font-size: 12px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; font-size: 11px; color: var(--text-dark); }
 .heart-date { background-color: var(--maroon); color: white; border-radius: 50%; display: inline-block; }
 
 /* Live Calendar Countdown (Slide 5) */
 .live-calendar-card {
   background: var(--maroon);
   color: white;
-  border-radius: 16px;
-  padding: 18px 14px;
+  border-radius: 14px;
+  padding: 14px 10px;
   width: 100%;
-  max-width: 320px;
-  box-shadow: 0 6px 16px rgba(139, 38, 62, 0.2);
-  border: 2px solid #FAF6ED;
-  margin-top: 10px;
+  max-width: 280px;
+  box-shadow: 0 4px 12px rgba(139, 38, 62, 0.2);
+  border: 1.5px solid #FAF6ED;
+  margin-top: 8px;
 }
 
 .cal-header {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
-  padding-bottom: 8px;
-  margin-bottom: 12px;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .cal-badge {
-  font-size: 10px;
-  letter-spacing: 1.5px;
+  font-size: 9px;
+  letter-spacing: 1px;
   background: rgba(255, 255, 255, 0.2);
-  padding: 3px 10px;
-  border-radius: 10px;
+  padding: 2px 8px;
+  border-radius: 8px;
   display: inline-block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .cal-date-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #FAF6ED;
 }
@@ -319,36 +319,36 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .time-box {
   background: #FAF6ED;
   color: var(--maroon);
-  padding: 8px 6px;
-  border-radius: 10px;
-  min-width: 48px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  padding: 6px 4px;
+  border-radius: 8px;
+  min-width: 42px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .time-box span {
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   display: block;
   line-height: 1;
 }
 
 .time-box small {
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 600;
-  margin-top: 3px;
+  margin-top: 2px;
   display: block;
   color: var(--text-dark);
 }
 
 .time-separator {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: #FAF6ED;
 }
@@ -356,32 +356,32 @@ img {
 /* Doodle Cards (Slide 6 & 7) */
 .doodle-card, .media-card {
   border: 2px solid var(--maroon);
-  border-radius: 18px 4px 18px 4px;
-  padding: 10px 12px;
+  border-radius: 14px 4px 14px 4px;
+  padding: 8px 10px;
   width: 100%;
-  max-width: 340px;
-  margin-bottom: 10px;
+  max-width: 300px;
+  margin-bottom: 8px;
   background-color: rgba(250, 246, 237, 0.9);
 }
 
 #slide-6 { 
   justify-content: flex-start; 
-  padding-top: 25px; 
-  padding-bottom: 85px; 
+  padding-top: 20px; 
+  padding-bottom: 90px; 
   overflow-y: auto; 
 }
 
-.card-subtitle { font-size: 1.1rem; margin-bottom: 2px; }
-.event-date { font-size: 13px; margin-bottom: 4px; }
-.address-text { font-size: 12px; line-height: 1.2; margin: 3px 0; }
+.card-subtitle { font-size: 1rem; margin-bottom: 2px; }
+.event-date { font-size: 11px; margin-bottom: 3px; }
+.address-text { font-size: 11px; line-height: 1.2; margin: 2px 0; }
 
 .map-box { 
   width: 100%; 
-  height: 95px; 
-  border-radius: 10px; 
+  height: 75px; 
+  border-radius: 8px; 
   overflow: hidden; 
   border: 1px solid var(--maroon); 
-  margin: 6px 0; 
+  margin: 4px 0; 
 }
 .map-iframe { width: 100%; height: 100%; border: 0; }
 
@@ -389,57 +389,57 @@ img {
   background-color: var(--green-olive); 
   color: white; 
   border: none; 
-  padding: 4px 12px; 
-  border-radius: 10px; 
+  padding: 3px 10px; 
+  border-radius: 8px; 
   font-family: var(--font-handwritten); 
-  font-size: 14px; 
+  font-size: 13px; 
   cursor: pointer; 
   text-decoration: none; 
   display: inline-block; 
 }
 
-.dresscode-box { margin: 4px 0; font-size: 11px; }
+.dresscode-box { margin: 3px 0; font-size: 10px; }
 
 /* Form RSVP (Slide 9) */
 .rsvp-form { 
-  border: 2px solid var(--maroon); 
-  padding: 12px; 
+  border: 1.5px solid var(--maroon); 
+  padding: 10px; 
   width: 100%; 
-  max-width: 330px; 
+  max-width: 290px; 
   text-align: left; 
   background: rgba(250, 246, 237, 0.9); 
-  border-radius: 12px;
+  border-radius: 10px;
 }
-.rsvp-form label { font-size: 10px; color: var(--maroon); display: block; margin-top: 6px; }
+.rsvp-form label { font-size: 9px; color: var(--maroon); display: block; margin-top: 4px; }
 .rsvp-form input, .rsvp-form select, .rsvp-form textarea { 
   width: 100%; 
-  padding: 5px; 
+  padding: 4px; 
   border: 1px solid #ccc; 
   background-color: #FAF6ED; 
   font-family: var(--font-handwritten); 
-  font-size: 13px; 
+  font-size: 12px; 
   margin-top: 2px; 
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 /* Gallery Grid (Slide 8) */
-#slide-8 { justify-content: flex-start; padding-top: 30px; overflow-y: auto; }
-.gallery-grid { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; max-width: 340px; margin-top: 10px; }
-.grid-item { border-radius: 10px; overflow: hidden; position: relative; z-index: 2; }
+#slide-8 { justify-content: flex-start; padding-top: 25px; overflow-y: auto; }
+.gallery-grid { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; max-width: 300px; margin-top: 8px; }
+.grid-item { border-radius: 8px; overflow: hidden; position: relative; z-index: 2; }
 .grid-item.full-width { flex: 1 1 100%; aspect-ratio: 16 / 9; height: auto; }
-.grid-item.portrait { flex: 1 1 calc(50% - 4px); aspect-ratio: 3 / 4; height: auto; }
-.grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 10px; }
+.grid-item.portrait { flex: 1 1 calc(50% - 3px); aspect-ratio: 3 / 4; height: auto; }
+.grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 8px; }
 
 /* Styling Kartu ATM Fisik (Slide 10) */
 .atm-card {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  height: 160px;
-  border-radius: 14px;
-  padding: 15px;
-  margin: 0 auto 10px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  max-width: 270px;
+  height: 140px;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 0 auto 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -450,68 +450,68 @@ img {
 
 .bca-bg { background: linear-gradient(135deg, #ffffff 0%, #e3edf7 100%); }
 .mandiri-bg { background: linear-gradient(135deg, #f8f9fa 0%, #e2e8f0 100%); }
-.card-chip { width: 36px; height: 26px; background: linear-gradient(135deg, #f3d078, #d4af37); border-radius: 5px; border: 1px solid #b8972e; }
-.bank-logo-img { position: absolute; top: 14px; right: 15px; width: 70px; height: auto; object-fit: contain; }
-.card-details { margin-top: 10px; }
-.holder-name { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: #2d3748; margin-bottom: 2px; }
-.rekening-num { font-family: 'Poppins', sans-serif; font-size: 13px; letter-spacing: 1px; color: #4a5568; }
-.btn-copy-card { position: absolute; bottom: 12px; right: 12px; background: rgba(0, 0, 0, 0.45); color: #ffffff; border: none; padding: 4px 10px; border-radius: 16px; font-family: 'Poppins', sans-serif; font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+.card-chip { width: 30px; height: 22px; background: linear-gradient(135deg, #f3d078, #d4af37); border-radius: 4px; border: 1px solid #b8972e; }
+.bank-logo-img { position: absolute; top: 10px; right: 12px; width: 55px; height: auto; object-fit: contain; }
+.card-details { margin-top: 8px; }
+.holder-name { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; color: #2d3748; margin-bottom: 2px; }
+.rekening-num { font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 1px; color: #4a5568; }
+.btn-copy-card { position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.45); color: #ffffff; border: none; padding: 3px 8px; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 10px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
 
 /* Styling Slide 11 (Thanks Slide) */
 .slide-thanks {
   justify-content: center;
-  padding: 30px 20px 80px;
+  padding: 20px 15px 80px;
 }
 
 .thanks-opening {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--text-dark);
-  line-height: 1.4;
-  max-width: 290px;
-  margin-bottom: 18px;
+  line-height: 1.3;
+  max-width: 260px;
+  margin-bottom: 14px;
 }
 
 .thanks-sub {
   font-style: italic;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--text-dark);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .thanks-couples {
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   color: var(--maroon);
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 .thanks-credits {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .watermark-text {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-dark);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 15px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .socicon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   text-decoration: none;
-  font-size: 15px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  font-size: 13px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   transition: transform 0.2s ease;
 }
 
@@ -521,7 +521,7 @@ img {
 .socicon.tt { background-color: #000000; }
 
 .music-credit {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-dark);
   opacity: 0.8;
 }
@@ -550,66 +550,66 @@ img {
 
 .modal-content {
   background: #FAF6ED;
-  padding: 16px;
-  border-radius: 16px;
+  padding: 14px;
+  border-radius: 14px;
   width: 85%;
-  max-width: 320px;
+  max-width: 290px;
   position: relative;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
 .close-modal {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 6px;
+  right: 10px;
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 20px;
   color: var(--maroon);
   cursor: pointer;
 }
 
 .id-card-body {
   background: linear-gradient(135deg, #ffffff 0%, #f4efe0 100%);
-  border: 2px dashed var(--maroon);
-  border-radius: 14px;
-  padding: 15px;
-  margin-top: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border: 1.5px dashed var(--maroon);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .card-header {
   border-bottom: 1px solid rgba(139, 38, 62, 0.2);
-  padding-bottom: 8px;
-  margin-bottom: 10px;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .card-sub {
-  font-size: 10px;
-  letter-spacing: 1.5px;
+  font-size: 9px;
+  letter-spacing: 1px;
   color: var(--text-dark);
 }
 
 .card-title {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--maroon);
 }
 
 .card-guest-info {
   text-align: left;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .info-label {
-  font-size: 9px;
+  font-size: 8px;
   color: var(--text-dark);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 #card-guest-name {
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--maroon);
 }
 
@@ -620,31 +620,31 @@ img {
 
 .info-val {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: #333;
 }
 
 .card-qr-box {
-  margin-top: 8px;
-  padding-top: 8px;
+  margin-top: 6px;
+  padding-top: 6px;
   border-top: 1px solid rgba(139, 38, 62, 0.2);
 }
 
 .card-qr-box img {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 4px;
-  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 3px;
+  border-radius: 4px;
 }
 
 .qr-text {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--text-dark);
 }
 
 .save-tip {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--maroon);
-  margin-top: 10px;
+  margin-top: 8px;
 }
