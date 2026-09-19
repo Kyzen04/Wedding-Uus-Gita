@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -145,21 +145,35 @@
         <button class="btn-action">Add to Calendar</button>
       </section>
 
-      <!-- SLIDE 5: Counting Down -->
+      <!-- SLIDE 5: Counting Down & Kalender Live -->
       <section id="slide-5" class="full-slide">
         <h2 class="slide-title">Counting Down</h2>
-        <div class="envelope-wrapper">
-          <div class="envelope-body">
-            <div class="envelope-card">
-              <div class="countdown-row">
-                <div><span id="days">00</span><small>DAYS</small></div>
-                <div>:</div>
-                <div><span id="hours">00</span><small>HOURS</small></div>
-                <div>:</div>
-                <div><span id="minutes">00</span><small>MIN</small></div>
-                <div>:</div>
-                <div><span id="seconds">00</span><small>SEC</small></div>
-              </div>
+        
+        <div class="live-calendar-card">
+          <div class="cal-header">
+            <span class="cal-badge">WEDDING DAY</span>
+            <h3 class="cal-date-title">Jumat, 02 Oktober 2026</h3>
+          </div>
+
+          <div class="countdown-grid">
+            <div class="time-box">
+              <span id="days">00</span>
+              <small>HARI</small>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="hours">00</span>
+              <small>JAM</small>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="minutes">00</span>
+              <small>MENIT</small>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="seconds">00</span>
+              <small>DETIK</small>
             </div>
           </div>
         </div>
@@ -262,7 +276,7 @@
 
           <label>ATTENDANCE</label>
           <select id="rsvp-attendance">
-            <option value="Yes">Ya,Saya Akan Hadir</option>
+            <option value="Yes">Ya, Saya Akan Hadir</option>
             <option value="No">Maaf, Saya Tidak Bisa Hadir</option>
           </select>
 
