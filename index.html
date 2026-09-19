@@ -13,7 +13,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body class="no-scroll">
 
@@ -38,7 +38,7 @@
     <a href="#slide-4" class="nav-item" title="Kalender"><i class="fa-regular fa-calendar-days"></i></a>
     <a href="#slide-5" class="nav-item" title="Countdown"><i class="fa-regular fa-clock"></i></a>
     <a href="#slide-6" class="nav-item" title="Lokasi"><i class="fa-solid fa-location-dot"></i></a>
-    <a href="#slide-7" class="nav-item" title="Media"><i class="fa-solid fa-video"></i></a>
+    <a href="#slide-7" class="nav-item" title="Photobooth"><i class="fa-solid fa-camera-retro"></i></a>
     <a href="#slide-8" class="nav-item" title="Galeri"><i class="fa-regular fa-image"></i></a>
     <a href="#slide-9" class="nav-item" title="RSVP"><i class="fa-regular fa-comment-dots"></i></a>
     <a href="#slide-10" class="nav-item" title="Hadiah"><i class="fa-solid fa-gift"></i></a>
@@ -224,23 +224,45 @@
         </div>
       </section>
 
-      <!-- SLIDE 7: Media Event -->
-      <section id="slide-7" class="full-slide">
-        <div class="camera-doodle">📷</div>
-        <h2 class="slide-title">Media Event</h2>
+      <!-- SLIDE 7: Live Photo Booth (Kamera Web + Stiker Happy Wedding) -->
+      <section id="slide-7" class="full-slide photobooth-section">
+        <div class="camera-doodle">📸</div>
+        <h2 class="slide-title">Wedding Photobooth</h2>
+        <p class="sub-text" style="font-size: 12px; color: var(--text-dark); margin-bottom: 8px;">
+          Ambil selfie seru kamu dengan bingkai spesial Uus & Gita!
+        </p>
 
-        <div class="media-card">
-          <i class="fa-solid fa-video icon-large"></i>
-          <h3>Live Streaming</h3>
-          <p>Bergabunglah dengan kami secara virtual</p>
-          <button class="btn-olive">Tonton Sekarang <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        <!-- Container Kamera / Preview -->
+        <div class="booth-container">
+          <div id="cam-view-box" class="cam-box">
+            <video id="booth-video" autoplay playsinline></video>
+            <!-- Stiker Bingkai yang otomatis menempel di atas kamera -->
+            <div class="booth-watermark">
+              <span>✨ Happy Wedding ✨</span>
+              <strong>Uus & Gita</strong>
+              <small>02.10.2026</small>
+            </div>
+          </div>
+
+          <!-- Hasil Foto (Disembunyikan sebelum jepret) -->
+          <canvas id="booth-canvas" style="display:none;"></canvas>
+          <img id="booth-result" alt="Hasil Foto" style="display:none;">
         </div>
 
-        <div class="media-card">
-          <i class="fa-brands fa-instagram icon-large"></i>
-          <h3>Wedding Filter</h3>
-          <p>Abadikan momen bahagiamu</p>
-          <button class="btn-olive">Use Instagram Filter <i class="fa-brands fa-instagram"></i></button>
+        <!-- Tombol Kontrol Kamera -->
+        <div class="booth-controls">
+          <button id="btn-start-cam" class="btn-olive" onclick="startCamera()">
+            <i class="fa-solid fa-camera"></i> Buka Kamera
+          </button>
+          <button id="btn-capture" class="btn-action" onclick="capturePhoto()" style="display:none;">
+            <i class="fa-solid fa-circle-dot"></i> Jepret Foto!
+          </button>
+          <button id="btn-retake" class="btn-olive" onclick="retakePhoto()" style="display:none;">
+            <i class="fa-solid fa-rotate-right"></i> Foto Ulang
+          </button>
+          <a id="btn-download-photo" class="btn-action" style="display:none; background-color: var(--green-olive); text-decoration:none;" download="HappyWedding-UusGita.png">
+            <i class="fa-solid fa-download"></i> Simpan Foto
+          </a>
         </div>
       </section>
 
@@ -294,7 +316,7 @@
         </form>
       </section>
 
-     <!-- SLIDE 10: Wedding Gift -->
+      <!-- SLIDE 10: Wedding Gift (SeaBank) -->
       <section id="slide-10" class="full-slide">
         <div class="gift-doodle">🎁</div>
         <h2 class="slide-title">Wedding Gift</h2>
@@ -302,10 +324,9 @@
           Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
         </p>
 
-        <!-- Kartu SeaBank 1 (Gita) -->
         <div class="atm-card seabank-bg">
           <div class="card-chip"></div>
-          <img src="https://logobase.net/wp-content/uploads/2025/09/SeaBank-Logo.webp" class="bank-logo-img" alt="SeaBank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/SeaBank_logo.svg" class="bank-logo-img" alt="SeaBank">
           <div class="card-details">
             <p class="holder-name">GITA</p>
             <p id="rekening-seabank-1" class="rekening-num">901743365661</p>
@@ -315,10 +336,9 @@
           </button>
         </div>
 
-        <!-- Kartu SeaBank 2 (Uus Busrol Karim) -->
         <div class="atm-card seabank-bg">
           <div class="card-chip"></div>
-          <img src="https://logobase.net/wp-content/uploads/2025/09/SeaBank-Logo.webp" class="bank-logo-img" alt="SeaBank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/SeaBank_logo.svg" class="bank-logo-img" alt="SeaBank">
           <div class="card-details">
             <p class="holder-name">UUS BUSROL KARIM</p>
             <p id="rekening-seabank-2" class="rekening-num">901862749761</p>
