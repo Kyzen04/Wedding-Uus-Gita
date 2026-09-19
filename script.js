@@ -88,7 +88,7 @@ let mediaStream = null;
 let useFrontCamera = true; // Status awal pakai kamera depan (selfie)
 
 // Masukkan link Web App Google Apps Script kamu di antara tanda kutip di bawah ini
-const GOOGLE_DRIVE_WEB_APP_URL = "URL_WEB_APP_GOOGLE_DRIVE_KAMU_DISINI";
+const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwI9CWnW5tMTVKhqYyYUgUS9yDijBYsU_utcsmyPEtWetu50SBdH0PcLULweLRNlsVv9w/exec";
 
 async function startCamera() {
   try {
