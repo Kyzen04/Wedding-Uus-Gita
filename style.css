@@ -14,7 +14,7 @@
 
 body {
   font-family: var(--font-handwritten);
-  background-color: #2D2D2D; /* Background luar layar HP (di laptop) */
+  background-color: #2D2D2D;
   color: var(--maroon);
   font-size: 18px;
 }
@@ -55,7 +55,7 @@ img {
   100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
 }
 
-/* Navigasi Melayang Bawah (Selalu Pas di Tengah Layar HP) */
+/* Navigasi Melayang Bawah */
 .bottom-nav {
   position: fixed;
   bottom: 20px;
@@ -82,7 +82,7 @@ img {
 .floating-music {
   position: fixed;
   bottom: 20px;
-  right: calc(50% - 215px); /* Menempel di sudut kanan container HP */
+  right: calc(50% - 215px);
   background-color: #2D2D2D;
   color: white;
   border: none;
@@ -108,7 +108,7 @@ img {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-/* Cover Section (Terkunci Lebarnya Sesuai Container HP) */
+/* Cover Section */
 .cover-section {
   position: absolute;
   top: 0;
@@ -147,7 +147,7 @@ img {
 
 .couple-img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Pita Tanggal & Nama Tamu (Rata Tengah) */
+/* Pita Tanggal & Nama Tamu */
 .ribbon-date {
   background-color: var(--maroon);
   color: white;
@@ -305,7 +305,7 @@ img {
 .rsvp-form label { font-size: 11px; color: var(--maroon); display: block; margin-top: 8px; }
 .rsvp-form input, .rsvp-form select, .rsvp-form textarea { width: 100%; padding: 6px; border: 1px solid #ccc; background-color: #FAF6ED; font-family: var(--font-handwritten); font-size: 14px; margin-top: 2px; }
 
-/* Gallery Grid (Slide 8 - Ratio khusus Vivo Y20 & iPhone) */
+/* Gallery Grid (Slide 8) */
 #slide-8 { justify-content: flex-start; padding-top: 40px; overflow-y: auto; }
 .gallery-grid { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 380px; margin-top: 15px; }
 .grid-item { border-radius: 12px; overflow: hidden; position: relative; z-index: 2; }
@@ -339,3 +339,126 @@ img {
 .holder-name { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #2d3748; margin-bottom: 2px; }
 .rekening-num { font-family: 'Poppins', sans-serif; font-size: 15px; letter-spacing: 1.5px; color: #4a5568; }
 .btn-copy-card { position: absolute; bottom: 18px; right: 18px; background: rgba(0, 0, 0, 0.45); color: #ffffff; border: none; padding: 6px 14px; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+/* MODAL POPUP E-CARD */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #FAF6ED;
+  padding: 20px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 350px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--maroon);
+  cursor: pointer;
+}
+
+.id-card-body {
+  background: linear-gradient(135deg, #ffffff 0%, #f4efe0 100%);
+  border: 2px dashed var(--maroon);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(139, 38, 62, 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.card-sub {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-dark);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: var(--maroon);
+}
+
+.card-guest-info {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.info-label {
+  font-size: 10px;
+  color: var(--text-dark);
+  margin-top: 6px;
+}
+
+#card-guest-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: var(--maroon);
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-val {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card-qr-box {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(139, 38, 62, 0.2);
+}
+
+.card-qr-box img {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 5px;
+  border-radius: 6px;
+}
+
+.qr-text {
+  font-size: 11px;
+  color: var(--text-dark);
+}
+
+.save-tip {
+  font-size: 12px;
+  color: var(--maroon);
+  margin-top: 12px;
+}
