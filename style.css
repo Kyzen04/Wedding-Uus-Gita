@@ -277,8 +277,8 @@ img {
    8. SLIDE 3: GROOM & BRIDE (MEMPELAI)
    ========================================== */
 .oval-frame {
-  width: 1px;
-  height: 170px;
+  width: 150px;
+  height: 173px;
   border: 2px dashed var(--maroon);
   border-radius: 50%;
   padding: 3px;
