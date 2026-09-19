@@ -23,12 +23,13 @@ body {
   overflow: hidden;
 }
 
-/* Mencegah gambar gepeng/melar di semua tipe layar HP */
+/* Global Reset Gambar - Mencegah Gambar Gepeng / Hilang */
 img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
 }
 
 /* Container Efek Love Berjatuhan */
@@ -39,7 +40,7 @@ img {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 101;
+  z-index: 90;
   overflow: hidden;
 }
 
@@ -143,6 +144,8 @@ img {
   border: 3px solid var(--maroon);
   border-radius: 50%;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .couple-img {
@@ -227,6 +230,8 @@ img {
   padding: 8px 8px 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transform: rotate(-5deg);
+  position: relative;
+  z-index: 2;
 }
 
 .polaroid:nth-child(2) {
@@ -255,6 +260,8 @@ img {
   border-radius: 50%;
   padding: 4px;
   margin: 0 auto 5px;
+  position: relative;
+  z-index: 2;
 }
 
 .oval-frame img {
@@ -357,7 +364,7 @@ img {
   overflow-y: auto;
 }
 
-/* Styling Google Maps Interaktif (Slide 6) */
+/* Styling Google Maps Interaktif */
 .map-box {
   width: 100%;
   height: 130px;
@@ -444,6 +451,8 @@ img {
 .grid-item {
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 /* 1 Foto Atas (Landscape) */
@@ -455,7 +464,7 @@ img {
 /* 4 Foto Bawah (Portrait Tegak) */
 .grid-item.portrait {
   flex: 1 1 calc(50% - 5px);
-  height: 180px; /* Diubah dari 280px ke 180px agar tidak terlalu panjang dan muat dalam layar HP */
+  height: 180px;
 }
 
 .grid-item img {
