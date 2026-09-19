@@ -224,7 +224,7 @@
         </div>
       </section>
 
-      <!-- SLIDE 7: Live Photo Booth (Kamera Depan/Belakang + Stiker) -->
+      <!-- SLIDE 7: Live Photo Booth Ala Kamera HP -->
       <section id="slide-7" class="full-slide photobooth-section">
         <div class="camera-doodle">📸</div>
         <h2 class="slide-title">Wedding Photobooth</h2>
@@ -232,45 +232,60 @@
           Ambil selfie atau foto seru kamu dengan bingkai spesial Uus & Gita!
         </p>
 
-        <!-- Container Kamera / Preview -->
-        <div class="booth-container">
-          <div id="cam-view-box" class="cam-box">
-            <video id="booth-video" autoplay playsinline></video>
-            <!-- Stiker Bingkai yang otomatis menempel di atas kamera -->
-            <div class="booth-watermark">
-              <span>✨ Happy Wedding ✨</span>
-              <strong>Uus & Gita</strong>
-              <small>02.10.2026</small>
+        <div class="booth-wrapper">
+          <!-- Kotak Utama Kamera & Bingkai -->
+          <div class="booth-container">
+            <div id="cam-view-box" class="cam-box" style="position:relative; width:100%; height:100%;">
+              <video id="booth-video" autoplay playsinline style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;"></video>
+              
+              <!-- Garis Grid Kamera (Gaya ala iPhone) -->
+              <div class="camera-grid">
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+              </div>
+
+              <!-- Stiker Bingkai di Atas Kamera -->
+              <div class="booth-overlay-frame">
+                <div class="frame-top">
+                  <h3>✨ Wedding Photobooth ✨</h3>
+                  <p>Uus & Gita • 02.10.2026</p>
+                </div>
+              </div>
             </div>
+
+            <!-- Hasil Foto & Canvas -->
+            <canvas id="booth-canvas" style="display:none;"></canvas>
+            <img id="booth-result" alt="Hasil Foto" style="display:none; width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;">
           </div>
 
-          <!-- Hasil Foto (Disembunyikan sebelum jepret) -->
-          <canvas id="booth-canvas" style="display:none;"></canvas>
-          <img id="booth-result" alt="Hasil Foto" style="display:none;">
-        </div>
+          <!-- Panel Kontrol Tombol Mirip Kamera HP di Bawah -->
+          <div class="camera-controls">
+            <!-- Tombol Buka Kamera (Kiri) -->
+            <button id="btn-start-cam" class="control-btn-left" onclick="startCamera()" title="Buka Kamera">
+              <i class="fa-solid fa-camera"></i>
+            </button>
 
-        <!-- Tombol Kontrol Kamera -->
-        <div class="booth-controls">
-          <button id="btn-start-cam" class="btn-olive" onclick="startCamera()">
-            <i class="fa-solid fa-camera"></i> Buka Kamera
-          </button>
-          
-          <!-- Tombol Switch Kamera Depan/Belakang -->
-          <button id="btn-switch-cam" class="btn-olive" onclick="switchCamera()" style="display:none;">
-            <i class="fa-solid fa-rotate"></i> Putar Kamera
-          </button>
+            <!-- Tombol Jepret Bundar Besar (Tengah) -->
+            <button id="btn-capture" class="shutter-btn" onclick="capturePhoto()" title="Ambil Foto" style="display:none;">
+              <div class="shutter-inner"></div>
+            </button>
 
-          <button id="btn-capture" class="btn-action" onclick="capturePhoto()" style="display:none;">
-            <i class="fa-solid fa-circle-dot"></i> Jepret Foto!
-          </button>
-          
-          <button id="btn-retake" class="btn-olive" onclick="retakePhoto()" style="display:none;">
-            <i class="fa-solid fa-rotate-right"></i> Foto Ulang
-          </button>
-          
-          <a id="btn-download-photo" class="btn-action" style="display:none; background-color: var(--green-olive); text-decoration:none;" download="HappyWedding-UusGita.png">
-            <i class="fa-solid fa-download"></i> Simpan Foto
-          </a>
+            <!-- Tombol Putar Kamera Depan/Belakang (Kanan) -->
+            <button id="btn-switch-cam" class="control-btn-right" onclick="switchCamera()" title="Putar Kamera" style="display:none;">
+              <i class="fa-solid fa-rotate"></i>
+            </button>
+
+            <!-- Tombol Foto Ulang & Download (Muncul setelah jepret) -->
+            <button id="btn-retake" class="btn-olive" onclick="retakePhoto()" style="display:none;">
+              <i class="fa-solid fa-rotate-right"></i> Ulang
+            </button>
+            
+            <a id="btn-download-photo" class="btn-action" style="display:none; background-color: var(--green-olive); text-decoration:none;" download="HappyWedding-UusGita.png">
+              <i class="fa-solid fa-download"></i> Simpan
+            </a>
+          </div>
         </div>
       </section>
 
