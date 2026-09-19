@@ -223,17 +223,15 @@ function uploadPhotoToGoogleDrive(base64Image) {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const fileName = `Photobooth-UusGita-${timestamp}.png`;
 
-  const payload = {
+  const photoData = new URLSearchParams({
     file: base64Image,
     filename: fileName
-  };
+  });
 
   fetch(GOOGLE_DRIVE_WEB_APP_URL, {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(error => console.error(error));
+    body: photoData
+  }).catch(error => console.error("Error Upload Foto:", error));
 }
 
 function retakePhoto() {
@@ -257,18 +255,16 @@ function handleRSVP(event) {
   const message = messageInput ? messageInput.value : "";
 
   if (GOOGLE_DRIVE_WEB_APP_URL && !GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
-    const rsvpPayload = {
+    const rsvpData = new URLSearchParams({
       name: name,
       attendance: attendance,
       guests: guests,
       message: message
-    };
+    });
 
     fetch(GOOGLE_DRIVE_WEB_APP_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(rsvpPayload)
+      body: rsvpData
     }).catch(error => console.error("Error RSVP:", error));
   }
 
