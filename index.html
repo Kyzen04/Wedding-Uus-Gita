@@ -13,7 +13,7 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body class="no-scroll">
 
@@ -224,12 +224,12 @@
         </div>
       </section>
 
-      <!-- SLIDE 7: Live Photo Booth (Kamera Web + Stiker Happy Wedding) -->
+      <!-- SLIDE 7: Live Photo Booth (Kamera Depan/Belakang + Stiker) -->
       <section id="slide-7" class="full-slide photobooth-section">
         <div class="camera-doodle">📸</div>
         <h2 class="slide-title">Wedding Photobooth</h2>
         <p class="sub-text" style="font-size: 12px; color: var(--text-dark); margin-bottom: 8px;">
-          Ambil selfie seru kamu dengan bingkai spesial Uus & Gita!
+          Ambil selfie atau foto seru kamu dengan bingkai spesial Uus & Gita!
         </p>
 
         <!-- Container Kamera / Preview -->
@@ -254,12 +254,20 @@
           <button id="btn-start-cam" class="btn-olive" onclick="startCamera()">
             <i class="fa-solid fa-camera"></i> Buka Kamera
           </button>
+          
+          <!-- Tombol Switch Kamera Depan/Belakang -->
+          <button id="btn-switch-cam" class="btn-olive" onclick="switchCamera()" style="display:none;">
+            <i class="fa-solid fa-rotate"></i> Putar Kamera
+          </button>
+
           <button id="btn-capture" class="btn-action" onclick="capturePhoto()" style="display:none;">
             <i class="fa-solid fa-circle-dot"></i> Jepret Foto!
           </button>
+          
           <button id="btn-retake" class="btn-olive" onclick="retakePhoto()" style="display:none;">
             <i class="fa-solid fa-rotate-right"></i> Foto Ulang
           </button>
+          
           <a id="btn-download-photo" class="btn-action" style="display:none; background-color: var(--green-olive); text-decoration:none;" download="HappyWedding-UusGita.png">
             <i class="fa-solid fa-download"></i> Simpan Foto
           </a>
@@ -326,7 +334,7 @@
 
         <div class="atm-card seabank-bg">
           <div class="card-chip"></div>
-          <img src=""https://i.ibb.co.com/6XzW79S/seabank.png" class="bank-logo-img" alt="SeaBank">
+          <img src="https://i.ibb.co.com/6XzW79S/seabank.png" class="bank-logo-img" alt="SeaBank">
           <div class="card-details">
             <p class="holder-name">GITA</p>
             <p id="rekening-seabank-1" class="rekening-num">901743365661</p>
@@ -338,7 +346,7 @@
 
         <div class="atm-card seabank-bg">
           <div class="card-chip"></div>
-          <img src=""https://i.ibb.co.com/6XzW79S/seabank.png" class="bank-logo-img" alt="SeaBank">
+          <img src="https://i.ibb.co.com/6XzW79S/seabank.png" class="bank-logo-img" alt="SeaBank">
           <div class="card-details">
             <p class="holder-name">UUS BUSROL KARIM</p>
             <p id="rekening-seabank-2" class="rekening-num">901862749761</p>
