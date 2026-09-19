@@ -385,7 +385,7 @@ img {
 
 
 /* ==========================================
-   11. SLIDE 6 & 7: LOKASI & PHOTOBOOTH KAMERA
+   11. SLIDE 6 & 7: LOKASI & PHOTOBOOTH KAMERA (DIPERBAIKI)
    ========================================== */
 .doodle-card, .media-card {
   border: 2px solid var(--maroon);
@@ -402,26 +402,27 @@ img {
 .map-iframe { width: 100%; height: 100%; border: 0; }
 .btn-olive { background-color: var(--green-olive); color: white; border: none; padding: 4px 12px; border-radius: 10px; font-family: var(--font-handwritten); font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
 
-/* Styling Khusus Photobooth Kamera (Slide 7) */
+/* Styling Khusus Photobooth (Aman & Bisa Di-scroll) */
 .photobooth-section {
   justify-content: flex-start !important;
-  padding-top: 25px !important;
+  padding-top: 20px !important;
+  padding-bottom: 120px !important; /* Ruang bawah dilebihkan agar tombol tidak tertutup navigasi */
   overflow-y: auto !important;
 }
 
 .booth-container {
   width: 100%;
-  max-width: 300px;
-  margin-bottom: 10px;
+  max-width: 270px;
+  margin-bottom: 8px;
 }
 
 .cam-box {
   position: relative;
   width: 100%;
-  height: 230px;
+  height: 190px; /* Tinggi kotak kamera dikecilkan agar pas di layar HP */
   background: #000;
   border: 3px solid var(--maroon);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
@@ -433,30 +434,30 @@ img {
   display: block;
 }
 
-/* Stiker watermark di atas kamera */
 .booth-watermark {
   position: absolute;
-  bottom: 10px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(139, 38, 62, 0.85);
   color: #fff;
-  padding: 4px 14px;
+  padding: 3px 10px;
   border-radius: 20px;
   text-align: center;
   pointer-events: none;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   width: 90%;
 }
-.booth-watermark span { font-size: 10px; display: block; letter-spacing: 1px; color: #fef3d6; }
-.booth-watermark strong { font-family: 'Poppins', sans-serif; font-size: 13px; display: block; line-height: 1.1; }
-.booth-watermark small { font-size: 9px; opacity: 0.9; }
+.booth-watermark span { font-size: 9px; display: block; letter-spacing: 1px; color: #fef3d6; }
+.booth-watermark strong { font-family: 'Poppins', sans-serif; font-size: 12px; display: block; line-height: 1.1; }
+.booth-watermark small { font-size: 8px; opacity: 0.9; }
 
 .booth-controls {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 
