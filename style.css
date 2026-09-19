@@ -407,6 +407,75 @@ img {
 .rekening-num { font-family: 'Poppins', sans-serif; font-size: 15px; letter-spacing: 1.5px; color: #4a5568; }
 .btn-copy-card { position: absolute; bottom: 18px; right: 18px; background: rgba(0, 0, 0, 0.45); color: #ffffff; border: none; padding: 6px 14px; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
+/* Styling Slide 11 (Thanks Slide) */
+.slide-thanks {
+  justify-content: center;
+  padding: 40px 25px 90px;
+}
+
+.thanks-opening {
+  font-size: 16px;
+  color: var(--text-dark);
+  line-height: 1.6;
+  max-width: 320px;
+  margin-bottom: 25px;
+}
+
+.thanks-sub {
+  font-style: italic;
+  font-size: 16px;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.thanks-couples {
+  font-size: 2.5rem;
+  color: var(--maroon);
+  margin-bottom: 35px;
+}
+
+.thanks-credits {
+  margin-top: 20px;
+}
+
+.watermark-text {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.socicon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.socicon:hover { transform: scale(1.1); }
+.socicon.wa { background-color: #25D366; }
+.socicon.ig { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+.socicon.tt { background-color: #000000; }
+
+.music-credit {
+  font-size: 13px;
+  color: var(--text-dark);
+  opacity: 0.8;
+}
+
 /* MODAL POPUP E-CARD */
 .modal-overlay {
   position: fixed;
