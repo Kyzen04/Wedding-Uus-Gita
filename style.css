@@ -385,7 +385,7 @@ img {
 
 
 /* ==========================================
-   11. SLIDE 6 & 7: LOKASI & PHOTOBOOTH KAMERA
+   11. SLIDE 6 & 7: LOKASI & PHOTOBOOTH BINGKAI KAMERA
    ========================================== */
 .doodle-card, .media-card {
   border: 2px solid var(--maroon);
@@ -402,7 +402,7 @@ img {
 .map-iframe { width: 100%; height: 100%; border: 0; }
 .btn-olive { background-color: var(--green-olive); color: white; border: none; padding: 4px 12px; border-radius: 10px; font-family: var(--font-handwritten); font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
 
-/* Styling Khusus Photobooth (Aman & Tidak Menabrak Navigasi) */
+/* Styling Photobooth */
 .photobooth-section {
   justify-content: flex-start !important;
   padding-top: 20px !important;
@@ -416,15 +416,17 @@ img {
   margin-bottom: 8px;
 }
 
+/* Bingkai Estetik Ala Polaroid pada Kamera & Hasil Foto */
 .cam-box {
   position: relative;
   width: 100%;
   height: 190px;
-  background: #000;
-  border: 3px solid var(--maroon);
-  border-radius: 14px;
+  background: #ffffff;
+  border: 6px solid #FAF6ED !important; /* Bingkai tebal warna putih krem */
+  border-radius: 16px !important;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), inset 0 0 10px rgba(0, 0, 0, 0.1) !important;
+  padding: 4px;
 }
 
 #booth-video, #booth-result {
@@ -432,21 +434,23 @@ img {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 10px;
 }
 
 .booth-watermark {
   position: absolute;
-  bottom: 8px;
+  bottom: 10px !important;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(139, 38, 62, 0.85);
+  background: rgba(139, 38, 62, 0.9) !important;
   color: #fff;
-  padding: 3px 10px;
-  border-radius: 20px;
+  padding: 5px 8px !important;
+  border-radius: 10px !important;
+  border: 1px dashed #fef3d6;
   text-align: center;
   pointer-events: none;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  width: 90%;
+  width: 88% !important;
 }
 .booth-watermark span { font-size: 9px; display: block; letter-spacing: 1px; color: #fef3d6; }
 .booth-watermark strong { font-family: 'Poppins', sans-serif; font-size: 12px; display: block; line-height: 1.1; }
