@@ -90,7 +90,7 @@ setInterval(createHeart, 350);
 let mediaStream = null;
 let useFrontCamera = true;
 
-const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDIEXmnQPOtbTfjXbxDQKMlEtKCqUcGkpt0ox4dR8QR-my48M8gQqmEIw1a9XoxTP9/exec";
+const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyAtUOYzoCPtELbbSTie6LvHchqRsVx24dA8xu8KCkuF582MBnoQfuUgUuGoSZky5tT/exec";
 
 async function startCamera() {
   const video = document.getElementById('booth-video');
