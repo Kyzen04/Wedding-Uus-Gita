@@ -90,7 +90,8 @@ setInterval(createHeart, 350);
 let mediaStream = null;
 let useFrontCamera = true;
 
-const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwLZOOTY8FfjPzaNvsYtDM5mj5luwucexkmxl1IxFxE25-Hc_9crIxhyiQlT-0dapDQ/exec";
+// URL Web App Google Apps Script terbaru
+const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzguxGoa0NEDO-IKR19ckF4vUCd5L3UBQ3CYR3SViF_3xrkXOsBh0EsieUI1i1HiwrR/exec";
 
 async function startCamera() {
   const video = document.getElementById('booth-video');
@@ -108,7 +109,6 @@ async function startCamera() {
       mediaStream.getTracks().forEach(track => track.stop());
     }
 
-    // Menggunakan constraints fleksibel agar kamera HP tidak terpaksa zoom berlebihan
     const constraints = {
       video: { 
         facingMode: useFrontCamera ? 'user' : 'environment'
@@ -157,11 +157,11 @@ function capturePhoto() {
   canvas.height = video.videoHeight || 1350;
   const ctx = canvas.getContext('2d');
 
-  // Mirror dimatikan agar hasil jepretan normal dan tidak terbalik
+  // Gambar ke canvas secara normal tanpa mirror
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-  // Tambahkan Stiker / Watermark "Happy Wedding"
+  // Tambahkan Stiker / Watermark
   ctx.fillStyle = "rgba(139, 38, 62, 0.9)";
   ctx.fillRect(40, canvas.height - 180, canvas.width - 80, 130);
 
@@ -236,22 +236,22 @@ function handleRSVP(event) {
   const guests = guestsInput ? guestsInput.value : "1 Orang";
   const message = messageInput ? messageInput.value : "";
 
+  // Kirim data menggunakan URLSearchParams agar masuk mulus ke Google Sheets
   if (GOOGLE_DRIVE_WEB_APP_URL && !GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
-    const rsvpPayload = {
+    const rsvpData = new URLSearchParams({
       name: name,
       attendance: attendance,
       guests: guests,
       message: message
-    };
+    });
 
     fetch(GOOGLE_DRIVE_WEB_APP_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(rsvpPayload)
-    }).catch(error => console.error(error));
+      body: rsvpData
+    }).catch(error => console.error("Error RSVP:", error));
   }
 
+  // Tampilkan E-Card ID jika hadir
   if (attendance.toLowerCase().includes('hadir') || attendance === 'Yes') {
     const guestNameEl = document.getElementById('card-guest-name');
     const guestCountEl = document.getElementById('card-guest-count');
