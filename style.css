@@ -213,29 +213,29 @@ img {
 
 .slide-title { font-size: 2.2rem; margin-bottom: 10px; }
 
-/* Bunga Hiasan Melayang di Semua Slide */
-.global-floral-top {
+/* Bunga Hiasan Maroon SVG di Atas & Bawah */
+.floral-frame {
   position: fixed;
-  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 450px;
-  height: auto;
+  height: 70px;
   pointer-events: none;
   z-index: 10;
+  background-repeat: repeat-x;
+  background-size: contain;
 }
 
-.global-floral-bottom {
-  position: fixed;
-  bottom: -10px;
-  left: 50%;
+.top-floral {
+  top: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,90 350,-40 500,65 C650,170 900,-20 1200,40 L1200,0 L0,0 Z' fill='%238B263E' opacity='0.85'%3E%3C/path%3E%3Ccircle cx='150' cy='35' r='18' fill='%235B623A'/%3E%3Ccircle cx='500' cy='45' r='22' fill='%238B263E'/%3E%3Ccircle cx='850' cy='30' r='16' fill='%235B623A'/%3E%3C/svg%3E");
+}
+
+.bottom-floral {
+  bottom: 0;
   transform: translateX(-50%) rotate(180deg);
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  pointer-events: none;
-  z-index: 10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,90 350,-40 500,65 C650,170 900,-20 1200,40 L1200,0 L0,0 Z' fill='%238B263E' opacity='0.85'%3E%3C/path%3E%3Ccircle cx='150' cy='35' r='18' fill='%235B623A'/%3E%3Ccircle cx='500' cy='45' r='22' fill='%238B263E'/%3E%3Ccircle cx='850' cy='30' r='16' fill='%235B623A'/%3E%3C/svg%3E");
 }
 
 /* Polaroid (Slide 2) */
@@ -272,7 +272,7 @@ img {
   width: 100%;
   max-width: 300px;
   margin-bottom: 15px;
-  background: rgba(250, 246, 237, 0.8);
+  background: rgba(250, 246, 237, 0.85);
 }
 .calendar-header { background: var(--maroon); color: white; padding: 4px 20px; border-radius: 15px; display: inline-block; margin-bottom: 10px; }
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 14px; color: var(--text-dark); }
@@ -306,7 +306,7 @@ img {
 .rsvp-form label { font-size: 11px; color: var(--maroon); display: block; margin-top: 8px; }
 .rsvp-form input, .rsvp-form select, .rsvp-form textarea { width: 100%; padding: 6px; border: 1px solid #ccc; background-color: #FAF6ED; font-family: var(--font-handwritten); font-size: 14px; margin-top: 2px; }
 
-/* Gallery Grid (Slide 8) */
+/* Gallery Grid (Slide 8 - Ratio khusus Vivo Y20 & iPhone) */
 #slide-8 { justify-content: flex-start; padding-top: 40px; overflow-y: auto; }
 .gallery-grid { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 380px; margin-top: 15px; }
 .grid-item { border-radius: 12px; overflow: hidden; position: relative; z-index: 2; }
