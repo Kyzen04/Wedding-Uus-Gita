@@ -77,25 +77,39 @@ function createHeart() {
 setInterval(createHeart, 350);
 
 // ==========================================
-// FITUR PHOTOBOOTH KAMERA & STIKER OTOMATIS
+// FITUR PHOTOBOOTH KAMERA (DEPAN / BELAKANG) & STIKER
 // ==========================================
 let mediaStream = null;
+let useFrontCamera = true; // Status awal pakai kamera depan (selfie)
 
 async function startCamera() {
   try {
-    mediaStream = await navigator.mediaDevices.getUserMedia({ 
-      video: { facingMode: 'user' }, 
-      audio: false 
-    });
+    if (mediaStream) {
+      mediaStream.getTracks().forEach(track => track.stop());
+    }
+
+    const constraints = {
+      video: { facingMode: useFrontCamera ? 'user' : 'environment' },
+      audio: false
+    };
+
+    mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
     const video = document.getElementById('booth-video');
     video.srcObject = mediaStream;
     
     document.getElementById('btn-start-cam').style.display = 'none';
+    document.getElementById('btn-switch-cam').style.display = 'inline-block';
     document.getElementById('btn-capture').style.display = 'inline-block';
   } catch (err) {
     alert("Gagal mengakses kamera. Pastikan izin kamera diizinkan di browser HP kamu.");
     console.error(err);
   }
+}
+
+// Fungsi untuk memutar kamera (depan <-> belakang)
+function switchCamera() {
+  useFrontCamera = !useFrontCamera; // Balik statusnya
+  startCamera(); // Nyalakan ulang kamera dengan posisi baru
 }
 
 function capturePhoto() {
@@ -108,8 +122,17 @@ function capturePhoto() {
   canvas.height = video.videoHeight || 500;
   const ctx = canvas.getContext('2d');
 
+  // Jika pakai kamera depan, balik gambar (mirror) supaya pas
+  if (useFrontCamera) {
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+  }
+
   // Gambar hasil tangkapan kamera ke canvas
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Reset transformasi canvas agar stiker tidak ikut terbalik
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   // Tambahkan Stiker / Watermark "Happy Wedding" di atas canvas secara otomatis
   ctx.fillStyle = "rgba(139, 38, 62, 0.9)";
@@ -142,6 +165,7 @@ function capturePhoto() {
   document.querySelector('.booth-watermark').style.display = 'none';
   resultImg.style.display = 'block';
 
+  document.getElementById('btn-switch-cam').style.display = 'none';
   document.getElementById('btn-capture').style.display = 'none';
   document.getElementById('btn-retake').style.display = 'inline-block';
   downloadBtn.style.display = 'inline-block';
