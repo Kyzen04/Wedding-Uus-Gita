@@ -3,15 +3,18 @@
 // ==========================================
 function openInvitation() {
   const cover = document.getElementById('slide-1');
-  cover.classList.add('cover-zoom-out');
+  if (cover) {
+    cover.classList.add('cover-zoom-out');
+    setTimeout(() => {
+      cover.style.display = 'none';
+    }, 800);
+  }
   document.body.classList.remove('no-scroll');
 
   const music = document.getElementById('bg-music');
-  music.play().catch(e => console.log(e));
-
-  setTimeout(() => {
-    cover.style.display = 'none';
-  }, 800);
+  if (music) {
+    music.play().catch(e => console.log(e));
+  }
 }
 
 function toggleMusic() {
@@ -87,27 +90,48 @@ setInterval(createHeart, 350);
 let mediaStream = null;
 let useFrontCamera = true; // Status awal pakai kamera depan (selfie)
 
-// Masukkan link Web App Google Apps Script kamu di antara tanda kutip di bawah ini
 const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDIEXmnQPOtbTfjXbxDQKMlEtKCqUcGkpt0ox4dR8QR-my48M8gQqmEIw1a9XoxTP9/exec";
 
 async function startCamera() {
+  const video = document.getElementById('booth-video');
+  const resultImg = document.getElementById('booth-result');
+  const watermark = document.querySelector('.booth-watermark');
+  
+  const btnStart = document.getElementById('btn-start-cam');
+  const btnSwitch = document.getElementById('btn-switch-cam');
+  const btnCapture = document.getElementById('btn-capture');
+  const btnRetake = document.getElementById('btn-retake');
+  const btnDownload = document.getElementById('btn-download-photo');
+
   try {
     if (mediaStream) {
       mediaStream.getTracks().forEach(track => track.stop());
     }
 
     const constraints = {
-      video: { facingMode: useFrontCamera ? 'user' : 'environment' },
+      video: { 
+        facingMode: useFrontCamera ? 'user' : 'environment',
+        width: { ideal: 1080 },
+        height: { ideal: 1350 }
+      },
       audio: false
     };
 
     mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
-    const video = document.getElementById('booth-video');
     video.srcObject = mediaStream;
     
-    document.getElementById('btn-start-cam').style.display = 'none';
-    document.getElementById('btn-switch-cam').style.display = 'inline-block';
-    document.getElementById('btn-capture').style.display = 'inline-block';
+    // Tampilkan video & watermark, sembunyikan hasil foto
+    video.style.display = 'block';
+    if (watermark) watermark.style.display = 'block';
+    if (resultImg) resultImg.style.display = 'none';
+
+    // Atur visibilitas tombol
+    if (btnStart) btnStart.style.display = 'none';
+    if (btnSwitch) btnSwitch.style.display = 'flex';
+    if (btnCapture) btnCapture.style.display = 'flex';
+    if (btnRetake) btnRetake.style.display = 'none';
+    if (btnDownload) btnDownload.style.display = 'none';
+
   } catch (err) {
     alert("Gagal mengakses kamera. Pastikan izin kamera diizinkan di browser HP kamu.");
     console.error(err);
@@ -124,10 +148,17 @@ function capturePhoto() {
   const video = document.getElementById('booth-video');
   const canvas = document.getElementById('booth-canvas');
   const resultImg = document.getElementById('booth-result');
+  const watermark = document.querySelector('.booth-watermark');
+  
+  const btnSwitch = document.getElementById('btn-switch-cam');
+  const btnCapture = document.getElementById('btn-capture');
+  const btnRetake = document.getElementById('btn-retake');
   const downloadBtn = document.getElementById('btn-download-photo');
 
-  canvas.width = video.videoWidth || 400;
-  canvas.height = video.videoHeight || 500;
+  if (!video.srcObject) return;
+
+  canvas.width = video.videoWidth || 1080;
+  canvas.height = video.videoHeight || 1350;
   const ctx = canvas.getContext('2d');
 
   // Jika pakai kamera depan, balik gambar (mirror) supaya natural
@@ -142,21 +173,21 @@ function capturePhoto() {
   // Reset transformasi canvas agar stiker tidak ikut terbalik
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-  // Tambahkan Stiker / Watermark "Happy Wedding" di atas canvas secara otomatis
+  // Tambahkan Stiker / Watermark "Happy Wedding" persis di atas canvas
   ctx.fillStyle = "rgba(139, 38, 62, 0.9)";
-  ctx.fillRect(20, canvas.height - 80, canvas.width - 40, 65);
+  ctx.fillRect(40, canvas.height - 180, canvas.width - 80, 130);
 
   ctx.fillStyle = "#fef3d6";
-  ctx.font = "14px sans-serif";
+  ctx.font = "26px sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("✨ Happy Wedding ✨", canvas.width / 2, canvas.height - 55);
+  ctx.fillText("✨ Happy Wedding ✨", canvas.width / 2, canvas.height - 130);
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 18px sans-serif";
-  ctx.fillText("Uus & Gita", canvas.width / 2, canvas.height - 33);
+  ctx.font = "bold 36px 'Poppins', sans-serif";
+  ctx.fillText("Uus & Gita", canvas.width / 2, canvas.height - 85);
 
-  ctx.font = "12px sans-serif";
-  ctx.fillText("02.10.2026", canvas.width / 2, canvas.height - 15);
+  ctx.font = "24px sans-serif";
+  ctx.fillText("02.10.2026", canvas.width / 2, canvas.height - 45);
 
   // Ubah hasil canvas ke format gambar (DataURL)
   const dataURL = canvas.toDataURL('image/png');
@@ -171,15 +202,15 @@ function capturePhoto() {
     mediaStream.getTracks().forEach(track => track.stop());
   }
 
-  // Tampilkan hasil foto dan tombol download/ulang
+  // Tampilkan hasil foto & tombol download/ulang, sembunyikan video kamera
   video.style.display = 'none';
-  document.querySelector('.booth-watermark').style.display = 'none';
+  if (watermark) watermark.style.display = 'block'; 
   resultImg.style.display = 'block';
 
-  document.getElementById('btn-switch-cam').style.display = 'none';
-  document.getElementById('btn-capture').style.display = 'none';
-  document.getElementById('btn-retake').style.display = 'inline-block';
-  downloadBtn.style.display = 'inline-block';
+  if (btnSwitch) btnSwitch.style.display = 'none';
+  if (btnCapture) btnCapture.style.display = 'none';
+  if (btnRetake) btnRetake.style.display = 'inline-flex';
+  if (downloadBtn) downloadBtn.style.display = 'inline-flex';
 }
 
 // Fungsi pengiriman data foto ke Google Drive
@@ -214,14 +245,7 @@ function uploadPhotoToGoogleDrive(base64Image) {
 }
 
 function retakePhoto() {
-  document.getElementById('booth-result').style.display = 'none';
-  document.getElementById('booth-video').style.display = 'block';
-  document.querySelector('.booth-watermark').style.display = 'block';
-
-  document.getElementById('btn-retake').style.display = 'none';
-  document.getElementById('btn-download-photo').style.display = 'none';
-  
-  startCamera();
+  startCamera(); // Menyalakan ulang kamera di kotak yang sama
 }
 
 // ==========================================
