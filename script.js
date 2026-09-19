@@ -1,133 +1,653 @@
-// Buka Undangan & Play Musik
-function openInvitation() {
-  const cover = document.getElementById('slide-1');
-  cover.classList.add('cover-zoom-out');
-  document.body.classList.remove('no-scroll');
-
-  const music = document.getElementById('bg-music');
-  music.play().catch(e => console.log(e));
-
-  setTimeout(() => {
-    cover.style.display = 'none';
-  }, 800);
+/* ==========================================
+   1. PENGATURAN UTAMA & VARIABEL WARNA
+   ========================================== */
+:root {
+  --bg-cream: #F4EFE0;
+  --maroon: #8B263E;
+  --green-olive: #5B623A;
+  --text-dark: #4A443B;
+  --font-handwritten: 'Patrick Hand', cursive;
 }
 
-// Toggle Play / Pause Musik
-function toggleMusic() {
-  const music = document.getElementById('bg-music');
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// Salin Nomor Rekening
-function copyText(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Nomor rekening berhasil disalin!");
-  });
+body {
+  font-family: var(--font-handwritten);
+  background-color: #2D2D2D;
+  color: var(--maroon);
+  font-size: 16px;
 }
 
-// Countdown Timer menuju 02 Oktober 2026
-const targetDate = new Date("Oct 2, 2026 08:00:00").getTime();
-
-setInterval(function() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  if (document.getElementById("days")) {
-    document.getElementById("days").innerText = days > 0 ? (days < 10 ? '0' + days : days) : '00';
-    document.getElementById("hours").innerText = hours > 0 ? (hours < 10 ? '0' + hours : hours) : '00';
-    document.getElementById("minutes").innerText = minutes > 0 ? (minutes < 10 ? '0' + minutes : minutes) : '00';
-    document.getElementById("seconds").innerText = seconds > 0 ? (seconds < 10 ? '0' + seconds : seconds) : '00';
-  }
-}, 1000);
-
-// Logika Animasi Hujan Hati
-function createHeart() {
-  const container = document.getElementById('hearts-container');
-  if (!container) return;
-
-  const heart = document.createElement('div');
-  heart.classList.add('falling-heart');
-
-  const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞', '💘', '🤎', '🤍'];
-  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-
-  heart.style.left = Math.random() * 100 + 'vw';
-  const size = Math.random() * 14 + 14;
-  heart.style.fontSize = size + 'px';
-
-  const duration = Math.random() * 4 + 3;
-  heart.style.animationDuration = duration + 's';
-
-  container.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, duration * 1000);
+.no-scroll {
+  overflow: hidden;
 }
 
-setInterval(createHeart, 350);
-
-// Logika RSVP & Tampil E-ID Card
-function handleRSVP(event) {
-  event.preventDefault();
-  
-  const name = document.getElementById('rsvp-name').value;
-  const attendance = document.getElementById('rsvp-attendance').value;
-  const guests = document.getElementById('rsvp-guests').value;
-
-  if (attendance === 'Yes') {
-    document.getElementById('card-guest-name').innerText = name;
-    document.getElementById('card-guest-count').innerText = guests;
-    document.getElementById('idcard-modal').classList.add('active');
-  } else {
-    alert('Terima kasih atas ucapan dan konfirmasinya!');
-  }
-  
-  document.getElementById('rsvp-form').reset();
+img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
-function closeModal() {
-  document.getElementById('idcard-modal').classList.remove('active');
+
+/* ==========================================
+   2. EFEK LOVE BERJATUHAN (BACKGROUND)
+   ========================================== */
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 90;
+  overflow: hidden;
 }
 
-// Otomatis Mengambil Nama Tamu dari Parameter URL (?to=NamaTamu)
-window.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const guestName = urlParams.get('to');
-  if (guestName && document.getElementById('guest-name')) {
-    document.getElementById('guest-name').innerText = decodeURIComponent(guestName);
-  }
-});
+.falling-heart {
+  position: absolute;
+  top: -40px;
+  user-select: none;
+  animation: fall linear infinite;
+}
 
-// Auto Highlight Menu Navigasi Bawah Saat Di-scroll
-const slides = document.querySelectorAll('.full-slide, .cover-section');
-const navItems = document.querySelectorAll('.nav-item');
+@keyframes fall {
+  0% { transform: translateY(-40px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+}
 
-const scrollContainer = document.querySelector('.scroll-container');
-if (scrollContainer) {
-  scrollContainer.addEventListener('scroll', () => {
-    let current = '';
-    slides.forEach(slide => {
-      const slideTop = slide.offsetTop;
-      if (scrollContainer.scrollTop >= slideTop - 200) {
-        current = slide.getAttribute('id');
-      }
-    });
 
-    navItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('href') === `#${current}`) {
-        item.classList.add('active');
-      }
-    });
-  });
+/* ==========================================
+   3. NAVIGASI BAWAH & TOMBOL MUSIK MELAYANG
+   ========================================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--maroon);
+  padding: 8px 16px;
+  border-radius: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 99;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-item {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s;
+  padding: 2px;
+}
+
+.nav-item.active, .nav-item:hover { color: #FFFFFF; }
+
+.floating-music {
+  position: fixed;
+  bottom: 12px;
+  right: calc(50% - 210px);
+  background-color: #2D2D2D;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  z-index: 99;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 450px) {
+  .floating-music { right: 12px; }
+}
+
+
+/* ==========================================
+   4. CONTAINER UTAMA BINGKAI HP & HIASAN BUNGA
+   ========================================== */
+.main-container {
+  max-width: 450px;
+  margin: 0 auto;
+  background-color: var(--bg-cream);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Hiasan Bunga di 4 Pojok Layar HP */
+.floral-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: multiply;
+}
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; transform: scaleX(-1); }
+.bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
+.bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+
+
+/* ==========================================
+   5. PENGATURAN UMUM SLIDE & SCROLL
+   ========================================== */
+.scroll-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 2;
+}
+
+.full-slide {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  padding: 30px 15px 85px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.slide-title { font-size: 1.8rem; margin-bottom: 8px; }
+
+
+/* ==========================================
+   6. SLIDE 1: COVER UTAMA
+   ========================================== */
+.cover-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-cream);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.cover-zoom-out {
+  transform: scale(1.1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.subtitle-doodle { letter-spacing: 3px; font-size: 16px; font-weight: bold; }
+.main-title { font-size: 2.2rem; color: var(--green-olive); margin: 6px 0 12px; }
+
+.couple-photo-wrapper {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 10px;
+  border: 2px solid var(--maroon);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.couple-img { width: 100%; height: 100%; object-fit: cover; }
+
+.ribbon-date {
+  background-color: var(--maroon);
+  color: white;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 10px;
+  padding: 4px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.guest-container {
+  display: block;
+  width: fit-content;
+  max-width: 90%;
+  margin: 0 auto 10px;
+  padding: 6px 14px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  border: 1px dashed var(--maroon);
+}
+
+.guest-sub { font-size: 12px; color: var(--text-dark); margin-bottom: 2px; }
+.guest-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--maroon);
+  text-transform: capitalize;
+}
+
+.opening-text {
+  font-size: 13px;
+  color: var(--text-dark);
+  max-width: 300px;
+  margin: 0 auto 12px;
+  line-height: 1.3;
+}
+
+.btn-open, .btn-action {
+  background-color: var(--maroon);
+  color: white;
+  border: none;
+  padding: 6px 18px;
+  border-radius: 16px;
+  font-family: var(--font-handwritten);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   7. SLIDE 2: VERSE / AYAT & POLAROID
+   ========================================== */
+.polaroid-wrapper { display: flex; gap: 8px; justify-content: center; margin-bottom: 8px; }
+.polaroid {
+  background: white;
+  padding: 6px 6px 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transform: rotate(-4deg);
+}
+.polaroid:nth-child(2) { transform: rotate(4deg); }
+.polaroid img { width: 90px; height: 110px; object-fit: cover; }
+.verse-text { font-size: 13px; color: var(--text-dark); line-height: 1.3; margin-top: 8px; max-width: 300px; }
+
+
+/* ==========================================
+   8. SLIDE 3: GROOM & BRIDE (MEMPELAI)
+   ========================================== */
+.oval-frame {
+  width: 100px;
+  height: 125px;
+  border: 2px dashed var(--maroon);
+  border-radius: 50%;
+  padding: 3px;
+  margin: 0 auto 4px;
+}
+.oval-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.person-name { font-size: 1.3rem; }
+.person-sub, .parents-text { font-size: 13px; color: var(--text-dark); }
+.ig-tag { font-size: 12px; color: var(--green-olive); }
+
+
+/* ==========================================
+   9. SLIDE 4: SAVE THE DATE (KALENDER)
+   ========================================== */
+.calendar-card {
+  border: 2px solid var(--maroon);
+  border-radius: 16px;
+  padding: 12px;
+  width: 100%;
+  max-width: 270px;
+  margin-bottom: 12px;
+  background: rgba(250, 246, 237, 0.85);
+}
+.calendar-header { background: var(--maroon); color: white; padding: 3px 16px; border-radius: 12px; display: inline-block; margin-bottom: 8px; font-size: 14px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-size: 12px; color: var(--text-dark); }
+.heart-date { background-color: var(--maroon); color: white; border-radius: 50%; display: inline-block; }
+
+
+/* ==========================================
+   10. SLIDE 5: COUNTDOWN (HITUNG MUNDUR)
+   ========================================== */
+.live-calendar-card {
+  background: var(--maroon);
+  color: white;
+  border-radius: 16px;
+  padding: 18px 14px;
+  width: 100%;
+  max-width: 310px;
+  box-shadow: 0 6px 16px rgba(139, 38, 62, 0.2);
+  border: 2px solid #FAF6ED;
+  margin-top: 10px;
+}
+
+.cal-header {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.cal-badge {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.cal-date-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FAF6ED;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.time-box {
+  background: #FAF6ED;
+  color: var(--maroon);
+  padding: 8px 6px;
+  border-radius: 10px;
+  min-width: 48px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.time-box span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+.time-box small {
+  font-size: 8px;
+  font-weight: 600;
+  margin-top: 3px;
+  display: block;
+  color: var(--text-dark);
+}
+
+.time-separator {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FAF6ED;
+}
+
+
+/* ==========================================
+   11. SLIDE 6 & 7: LOKASI & MEDIA EVENT
+   ========================================== */
+.doodle-card, .media-card {
+  border: 2px solid var(--maroon);
+  border-radius: 18px 4px 18px 4px;
+  padding: 10px 12px;
+  width: 100%;
+  max-width: 330px;
+  margin-bottom: 10px;
+  background-color: rgba(250, 246, 237, 0.9);
+}
+
+#slide-6 { justify-content: flex-start; padding-top: 30px; padding-bottom: 85px; overflow-y: auto; }
+.map-box { width: 100%; height: 90px; border-radius: 10px; overflow: hidden; border: 1px solid var(--maroon); margin: 6px 0; }
+.map-iframe { width: 100%; height: 100%; border: 0; }
+.btn-olive { background-color: var(--green-olive); color: white; border: none; padding: 4px 12px; border-radius: 10px; font-family: var(--font-handwritten); font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
+
+
+/* ==========================================
+   12. SLIDE 8: OUR MEMORIES (GALERI FOTO)
+   ========================================== */
+#slide-8 { justify-content: flex-start; padding-top: 30px; overflow-y: auto; }
+.gallery-grid { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; max-width: 330px; margin-top: 10px; }
+.grid-item { border-radius: 10px; overflow: hidden; position: relative; z-index: 2; }
+.grid-item.full-width { flex: 1 1 100%; aspect-ratio: 16 / 9; height: auto; }
+.grid-item.portrait { flex: 1 1 calc(50% - 4px); aspect-ratio: 3 / 4; height: auto; }
+.grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 10px; }
+
+
+/* ==========================================
+   13. SLIDE 9: WISHES / RSVP (FORM KEHADIRAN)
+   ========================================== */
+.rsvp-form { border: 2px solid var(--maroon); padding: 12px; width: 100%; max-width: 320px; text-align: left; background: rgba(250, 246, 237, 0.9); border-radius: 12px; }
+.rsvp-form label { font-size: 10px; color: var(--maroon); display: block; margin-top: 6px; }
+.rsvp-form input, .rsvp-form select, .rsvp-form textarea { width: 100%; padding: 5px; border: 1px solid #ccc; background-color: #FAF6ED; font-family: var(--font-handwritten); font-size: 13px; margin-top: 2px; border-radius: 6px; }
+
+
+/* ==========================================
+   14. SLIDE 10: WEDDING GIFT (KARTU REKENING SEABANK)
+   ========================================== */
+#slide-10 { justify-content: flex-start; padding-top: 25px; padding-bottom: 85px; overflow-y: auto; }
+.atm-card {
+  position: relative;
+  width: 100%;
+  max-width: 310px;
+  height: 130px;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 0 auto 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Warna Kartu SeaBank */
+.seabank-bg { background: linear-gradient(135deg, #fff9ec 0%, #fef3d6 100%); }
+
+.card-chip { width: 30px; height: 22px; background: linear-gradient(135deg, #f3d078, #d4af37); border-radius: 4px; border: 1px solid #b8972e; }
+.bank-logo-img { position: absolute; top: 12px; right: 15px; width: 60px; height: auto; object-fit: contain; }
+.card-details { margin-top: 6px; }
+.holder-name { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: #2d3748; margin-bottom: 2px; }
+.rekening-num { font-family: 'Poppins', sans-serif; font-size: 12px; letter-spacing: 1px; color: #4a5568; }
+.btn-copy-card { position: absolute; bottom: 10px; right: 12px; background: rgba(0, 0, 0, 0.45); color: #ffffff; border: none; padding: 3px 10px; border-radius: 14px; font-family: 'Poppins', sans-serif; font-size: 10px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+
+
+/* ==========================================
+   15. SLIDE 11: THANKS (PENUTUP & SOSMED)
+   ========================================== */
+.slide-thanks {
+  justify-content: center;
+  padding: 30px 20px 85px;
+}
+
+.thanks-opening {
+  font-size: 14px;
+  color: var(--text-dark);
+  line-height: 1.4;
+  max-width: 290px;
+  margin-bottom: 18px;
+}
+
+.thanks-sub {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.thanks-couples {
+  font-size: 2.1rem;
+  color: var(--maroon);
+  margin-bottom: 25px;
+}
+
+.thanks-credits {
+  margin-top: 10px;
+}
+
+.watermark-text {
+  font-size: 12px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.socicon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.socicon:hover { transform: scale(1.1); }
+.socicon.wa { background-color: #25D366; }
+.socicon.ig { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+.socicon.tt { background-color: #000000; }
+
+.music-credit {
+  font-size: 11px;
+  color: var(--text-dark);
+  opacity: 0.8;
+}
+
+
+/* ==========================================
+   16. MODAL POPUP E-ID CARD (KARTU UCAPAN)
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #FAF6ED;
+  padding: 16px;
+  border-radius: 16px;
+  width: 85%;
+  max-width: 320px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.close-modal {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--maroon);
+  cursor: pointer;
+}
+
+.id-card-body {
+  background: linear-gradient(135deg, #ffffff 0%, #f4efe0 100%);
+  border: 2px dashed var(--maroon);
+  border-radius: 14px;
+  padding: 15px;
+  margin-top: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  border-bottom: 1px solid rgba(139, 38, 62, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.card-sub {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--text-dark);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  color: var(--maroon);
+}
+
+.card-guest-info {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.info-label {
+  font-size: 9px;
+  color: var(--text-dark);
+  margin-top: 4px;
+}
+
+#card-guest-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--maroon);
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-val {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card-qr-box {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(139, 38, 62, 0.2);
+}
+
+.card-qr-box img {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 4px;
+  border-radius: 5px;
+}
+
+.qr-text {
+  font-size: 10px;
+  color: var(--text-dark);
+}
+
+.save-tip {
+  font-size: 11px;
+  color: var(--maroon);
+  margin-top: 10px;
 }
