@@ -76,9 +76,7 @@ function createHeart() {
 
 setInterval(createHeart, 350);
 
-// ==========================================
-// KODE BARU: Logika RSVP & Tampil E-ID Card
-// ==========================================
+// Logika RSVP & Tampil E-ID Card
 function handleRSVP(event) {
   event.preventDefault();
   
@@ -87,11 +85,8 @@ function handleRSVP(event) {
   const guests = document.getElementById('rsvp-guests').value;
 
   if (attendance === 'Yes') {
-    // Memasukkan data tamu ke dalam E-ID Card
     document.getElementById('card-guest-name').innerText = name;
     document.getElementById('card-guest-count').innerText = guests;
-    
-    // Menampilkan Modal E-ID Card
     document.getElementById('idcard-modal').classList.add('active');
   } else {
     alert('Terima kasih atas ucapan dan konfirmasinya!');
@@ -112,3 +107,27 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('guest-name').innerText = decodeURIComponent(guestName);
   }
 });
+
+// Auto Highlight Menu Navigasi Bawah Saat Di-scroll
+const slides = document.querySelectorAll('.full-slide, .cover-section');
+const navItems = document.querySelectorAll('.nav-item');
+
+const scrollContainer = document.querySelector('.scroll-container');
+if (scrollContainer) {
+  scrollContainer.addEventListener('scroll', () => {
+    let current = '';
+    slides.forEach(slide => {
+      const slideTop = slide.offsetTop;
+      if (scrollContainer.scrollTop >= slideTop - 200) {
+        current = slide.getAttribute('id');
+      }
+    });
+
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === `#${current}`) {
+        item.classList.add('active');
+      }
+    });
+  });
+}
