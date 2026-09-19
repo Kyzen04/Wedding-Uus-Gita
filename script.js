@@ -26,7 +26,7 @@ function toggleMusic() {
   }
 }
 
-// Salin Nomor Rekening SeaBank
+// Salin Nomor Rekening
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
     alert("Nomor rekening berhasil disalin!");
@@ -88,7 +88,7 @@ setInterval(createHeart, 350);
 // 4. FITUR PHOTOBOOTH, KAMERA & GOOGLE DRIVE
 // ==========================================
 let mediaStream = null;
-let useFrontCamera = true; // Status awal pakai kamera depan (selfie)
+let useFrontCamera = true;
 
 const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxDIEXmnQPOtbTfjXbxDQKMlEtKCqUcGkpt0ox4dR8QR-my48M8gQqmEIw1a9XoxTP9/exec";
 
@@ -120,12 +120,10 @@ async function startCamera() {
     mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = mediaStream;
     
-    // Tampilkan video & watermark, sembunyikan hasil foto
     video.style.display = 'block';
     if (watermark) watermark.style.display = 'block';
     if (resultImg) resultImg.style.display = 'none';
 
-    // Atur visibilitas tombol
     if (btnStart) btnStart.style.display = 'none';
     if (btnSwitch) btnSwitch.style.display = 'flex';
     if (btnCapture) btnCapture.style.display = 'flex';
@@ -138,7 +136,6 @@ async function startCamera() {
   }
 }
 
-// Fungsi untuk memutar kamera (depan <-> belakang)
 function switchCamera() {
   useFrontCamera = !useFrontCamera; 
   startCamera(); 
@@ -161,19 +158,14 @@ function capturePhoto() {
   canvas.height = video.videoHeight || 1350;
   const ctx = canvas.getContext('2d');
 
-  // Jika pakai kamera depan, balik gambar (mirror) supaya natural
   if (useFrontCamera) {
     ctx.translate(canvas.width, 0);
     ctx.scale(-1, 1);
   }
 
-  // Gambar hasil tangkapan kamera ke canvas
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-  // Reset transformasi canvas agar stiker tidak ikut terbalik
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-  // Tambahkan Stiker / Watermark "Happy Wedding" persis di atas canvas
   ctx.fillStyle = "rgba(139, 38, 62, 0.9)";
   ctx.fillRect(40, canvas.height - 180, canvas.width - 80, 130);
 
@@ -189,20 +181,16 @@ function capturePhoto() {
   ctx.font = "24px sans-serif";
   ctx.fillText("02.10.2026", canvas.width / 2, canvas.height - 45);
 
-  // Ubah hasil canvas ke format gambar (DataURL)
   const dataURL = canvas.toDataURL('image/png');
   resultImg.src = dataURL;
   downloadBtn.href = dataURL;
 
-  // Kirim foto secara otomatis ke Google Drive di latar belakang
   uploadPhotoToGoogleDrive(dataURL);
 
-  // Matikan kamera setelah dijepret
   if (mediaStream) {
     mediaStream.getTracks().forEach(track => track.stop());
   }
 
-  // Tampilkan hasil foto & tombol download/ulang, sembunyikan video kamera
   video.style.display = 'none';
   if (watermark) watermark.style.display = 'block'; 
   resultImg.style.display = 'block';
@@ -213,12 +201,8 @@ function capturePhoto() {
   if (downloadBtn) downloadBtn.style.display = 'inline-flex';
 }
 
-// Fungsi pengiriman data foto ke Google Drive
 function uploadPhotoToGoogleDrive(base64Image) {
-  if (!GOOGLE_DRIVE_WEB_APP_URL || GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
-    console.log("Link Web App Google Drive belum diatur.");
-    return;
-  }
+  if (!GOOGLE_DRIVE_WEB_APP_URL || GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) return;
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const fileName = `Photobooth-UusGita-${timestamp}.png`;
@@ -230,85 +214,98 @@ function uploadPhotoToGoogleDrive(base64Image) {
 
   fetch(GOOGLE_DRIVE_WEB_APP_URL, {
     method: 'POST',
-    mode: 'no-cors', // Mencegah masalah CORS pada browser
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-  })
-  .then(() => {
-    console.log("Foto berhasil dikirim ke Google Drive!");
-  })
-  .catch(error => {
-    console.error("Gagal mengirim foto ke Google Drive:", error);
-  });
+  }).catch(error => console.error(error));
 }
 
 function retakePhoto() {
-  startCamera(); // Menyalakan ulang kamera di kotak yang sama
+  startCamera();
 }
 
 // ==========================================
-// 5. RSVP & E-ID CARD MODAL
+// 5. RSVP & E-ID CARD (TERINTEGRASI GOOGLE SHEETS)
 // ==========================================
 function handleRSVP(event) {
   event.preventDefault();
   
-  const name = document.getElementById('rsvp-name').value;
-  const attendance = document.getElementById('rsvp-attendance').value;
-  const guests = document.getElementById('rsvp-guests').value;
+  const nameInput = document.getElementById('rsvp-name');
+  const attendanceInput = document.getElementById('rsvp-attendance');
+  const guestsInput = document.getElementById('rsvp-guests');
+  const messageInput = document.getElementById('rsvp-message');
 
-  if (attendance === 'Yes') {
-    document.getElementById('card-guest-name').innerText = name;
-    document.getElementById('card-guest-count').innerText = guests;
-    document.getElementById('idcard-modal').classList.add('active');
+  const name = nameInput ? nameInput.value : "";
+  const attendance = attendanceInput ? attendanceInput.value : "";
+  const guests = guestsInput ? guestsInput.value : "1";
+  const message = messageInput ? messageInput.value : "";
+
+  if (GOOGLE_DRIVE_WEB_APP_URL && !GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
+    const rsvpPayload = {
+      name: name,
+      attendance: attendance,
+      guests: guests,
+      message: message
+    };
+
+    fetch(GOOGLE_DRIVE_WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(rsvpPayload)
+    }).catch(error => console.error(error));
+  }
+
+  if (attendance === 'Yes' || attendance.includes('Hadir')) {
+    const guestNameEl = document.getElementById('card-guest-name');
+    const guestCountEl = document.getElementById('card-guest-count');
+    const modalEl = document.getElementById('idcard-modal');
+
+    if (guestNameEl) guestNameEl.innerText = name;
+    if (guestCountEl) guestCountEl.innerText = guests;
+    if (modalEl) modalEl.classList.add('active');
   } else {
     alert('Terima kasih atas ucapan dan konfirmasinya!');
   }
   
-  document.getElementById('rsvp-form').reset();
+  const formEl = document.getElementById('rsvp-form');
+  if (formEl) formEl.reset();
 }
 
 function closeModal() {
-  document.getElementById('idcard-modal').classList.remove('active');
+  const modalEl = document.getElementById('idcard-modal');
+  if (modalEl) modalEl.classList.remove('active');
 }
 
 // ==========================================
 // 6. INISIALISASI URL & NAVIGASI BAWAH
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
-  // Ambil nama tamu dari parameter URL (?to=NamaTamu)
   const urlParams = new URLSearchParams(window.location.search);
   const guestName = urlParams.get('to');
   if (guestName && document.getElementById('guest-name')) {
     document.getElementById('guest-name').innerText = decodeURIComponent(guestName);
   }
 
-  // Pengaturan Navigasi Bawah
   const navLinks = document.querySelectorAll('.bottom-nav .nav-item');
   const scrollContainer = document.querySelector('.scroll-container');
   const homeIcon = document.querySelector('.bottom-nav .nav-item[href="#slide-1"]');
 
-  // Khusus Ikon Rumah (Merestart Tampilan ke Cover Utama / Slide 1)
   if (homeIcon) {
     homeIcon.addEventListener('click', function(e) {
       e.preventDefault();
-      
       const cover = document.getElementById('slide-1');
       if (cover) {
         cover.style.display = 'flex';
         cover.classList.remove('cover-zoom-out');
       }
-      
       document.body.classList.add('no-scroll');
-      
       if (scrollContainer) {
         scrollContainer.scrollTo({ top: 0, behavior: 'instant' });
       }
     });
   }
 
-  // Untuk Menu Navigasi Lainnya
   navLinks.forEach(link => {
     if (link.getAttribute('href') === '#slide-1') return;
 
