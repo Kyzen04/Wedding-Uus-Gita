@@ -1,80 +1,85 @@
+// Buka Undangan & Play Musik
 function openInvitation() {
   const cover = document.getElementById('slide-1');
-  if (cover) {
-    cover.classList.add('cover-zoom-out');
-    document.body.classList.remove('no-scroll');
+  cover.classList.add('cover-zoom-out');
+  
+  const bgMusic = document.getElementById('bg-music');
+  bgMusic.play();
+  
+  document.body.classList.remove('no-scroll');
+  createHearts();
+}
+
+// Toggle Music
+function toggleMusic() {
+  const bgMusic = document.getElementById('bg-music');
+  const btn = document.getElementById('music-btn');
+  
+  if (bgMusic.paused) {
+    bgMusic.play();
+    btn.innerHTML = '<i class="fa-solid fa-music"></i>';
+  } else {
+    bgMusic.pause();
+    btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+  }
+}
+
+// Efek Love Berjatuhan
+function createHearts() {
+  const container = document.getElementById('hearts-container');
+  const heartIcons = ['💖', '💕', '💗', '❤️', '🌸'];
+
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('falling-heart');
+    heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+    heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+    
+    container.appendChild(heart);
 
     setTimeout(() => {
-      cover.style.display = 'none';
-    }, 800);
-  }
-
-  const music = document.getElementById('bg-music');
-  if (music) {
-    music.play().catch(e => console.log("Autoplay ditolak browser:", e));
-  }
+      heart.remove();
+    }, 5000);
+  }, 400);
 }
 
-function toggleMusic() {
-  const music = document.getElementById('bg-music');
-  if (music) {
-    if (music.paused) {
-      music.play();
-    } else {
-      music.pause();
-    }
-  }
-}
-
+// Salin Rekening
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
-    alert("Nomor rekening berhasil disalin!");
+    alert('Nomor rekening berhasil disalin!');
   });
 }
 
-// Countdown Timer menuju 02 Oktober 2026
-const targetDate = new Date("Oct 2, 2026 08:00:00").getTime();
+// Logika RSVP & Tampil E-ID Card
+function handleRSVP(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('rsvp-name').value;
+  const attendance = document.getElementById('rsvp-attendance').value;
+  const guests = document.getElementById('rsvp-guests').value;
 
-setInterval(function() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  if (document.getElementById("days")) {
-    document.getElementById("days").innerText = days > 0 ? (days < 10 ? '0' + days : days) : '00';
-    document.getElementById("hours").innerText = hours > 0 ? (hours < 10 ? '0' + hours : hours) : '00';
-    document.getElementById("minutes").innerText = minutes > 0 ? (minutes < 10 ? '0' + minutes : minutes) : '00';
-    document.getElementById("seconds").innerText = seconds > 0 ? (seconds < 10 ? '0' + seconds : seconds) : '00';
+  if (attendance === 'Yes') {
+    document.getElementById('card-guest-name').innerText = name;
+    document.getElementById('card-guest-count').innerText = guests;
+    document.getElementById('idcard-modal').classList.add('active');
+  } else {
+    alert('Terima kasih atas ucapan dan konfirmasinya!');
   }
-}, 1000);
-
-// Logika Animasi Hujan Hati
-function createHeart() {
-  const container = document.getElementById('hearts-container');
-  if (!container) return;
-
-  const heart = document.createElement('div');
-  heart.classList.add('falling-heart');
-
-  const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞', '💘', '🤎', '🤍'];
-  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-
-  heart.style.left = Math.random() * 100 + 'vw';
-  const size = Math.random() * 14 + 14;
-  heart.style.fontSize = size + 'px';
-
-  const duration = Math.random() * 4 + 3;
-  heart.style.animationDuration = duration + 's';
-
-  container.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, duration * 1000);
+  
+  document.getElementById('rsvp-form').reset();
 }
 
-setInterval(createHeart, 350);
+function closeModal() {
+  document.getElementById('idcard-modal').classList.remove('active');
+}
+
+// Auto Ambil Nama Tamu dari URL (?to=NamaTamu)
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const guestName = urlParams.get('to');
+  if (guestName) {
+    document.getElementById('guest-name').innerText = decodeURIComponent(guestName);
+  }
+});
