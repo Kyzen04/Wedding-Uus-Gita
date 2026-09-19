@@ -345,8 +345,8 @@ img {
   font-size: 8px;
 }
 
-/* Doodle Cards (Slide 6, 7 & 10) */
-.doodle-card, .media-card, .bank-card {
+/* Doodle Cards (Slide 6 & 7) */
+.doodle-card, .media-card {
   border: 3px solid var(--maroon);
   border-radius: 25px 5px 25px 5px;
   padding: 15px;
@@ -396,17 +396,6 @@ img {
   display: inline-block;
 }
 
-.btn-copy {
-  background-color: var(--green-olive);
-  color: white;
-  border: none;
-  padding: 5px 15px;
-  border-radius: 12px;
-  font-family: var(--font-handwritten);
-  font-size: 14px;
-  cursor: pointer;
-}
-
 /* Form RSVP (Slide 9) */
 .rsvp-form {
   border: 2px solid var(--maroon);
@@ -432,7 +421,7 @@ img {
   margin-top: 2px;
 }
 
-/* Gallery Grid (Slide 8 - 1 Landscape & 4 Portrait) */
+/* Gallery Grid (Slide 8 - Fixed Ratio untuk Vivo Y20 & iPhone) */
 #slide-8 {
   justify-content: flex-start;
   padding-top: 40px;
@@ -458,19 +447,105 @@ img {
 /* 1 Foto Atas (Landscape) */
 .grid-item.full-width {
   flex: 1 1 100%;
-  height: 160px;
+  aspect-ratio: 16 / 9;
+  height: auto;
 }
 
 /* 4 Foto Bawah (Portrait Tegak) */
 .grid-item.portrait {
   flex: 1 1 calc(50% - 5px);
-  height: 180px;
+  aspect-ratio: 3 / 4;
+  height: auto;
 }
 
 .grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   border-radius: 12px;
+}
+
+/* Styling Kartu ATM Fisik (Slide 10) */
+.atm-card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 190px;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 0 auto 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.bca-bg {
+  background: linear-gradient(135deg, #ffffff 0%, #e3edf7 100%);
+}
+
+.mandiri-bg {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e2e8f0 100%);
+}
+
+.card-chip {
+  width: 44px;
+  height: 32px;
+  background: linear-gradient(135deg, #f3d078, #d4af37);
+  border-radius: 6px;
+  border: 1px solid #b8972e;
+}
+
+.bank-logo-img {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 85px;
+  height: auto;
+  object-fit: contain;
+}
+
+.card-details {
+  margin-top: 15px;
+}
+
+.holder-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 2px;
+}
+
+.rekening-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: #4a5568;
+}
+
+.btn-copy-card {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.3s;
+}
+
+.btn-copy-card:hover {
+  background: rgba(0, 0, 0, 0.7);
 }
