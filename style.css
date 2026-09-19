@@ -400,7 +400,7 @@ img {
 #slide-6 { justify-content: flex-start; padding-top: 30px; padding-bottom: 85px; overflow-y: auto; }
 .map-box { width: 100%; height: 90px; border-radius: 10px; overflow: hidden; border: 1px solid var(--maroon); margin: 6px 0; }
 .map-iframe { width: 100%; height: 100%; border: 0; }
-.btn-olive { background-color: var(--green-olive); color: white; border: none; padding: 4px 12px; border-radius: 10px; font-family: var(--font-handwritten); font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn-olive { background-color: var(--green-olive); color: white; border: none; padding: 6px 14px; border-radius: 10px; font-family: var(--font-handwritten); font-size: 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
 
 /* Styling Photobooth */
 .photobooth-section {
@@ -412,9 +412,10 @@ img {
 
 .booth-wrapper {
   background-color: rgba(250, 246, 237, 0.95);
-  padding: 15px 10px;
+  padding: 15px 12px;
   border-radius: 20px;
-  max-width: 320px;
+  width: 100% !important;
+  max-width: 300px !important;
   margin: 0 auto;
   border: 2px solid var(--maroon);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -423,28 +424,32 @@ img {
 
 .booth-container {
   position: relative;
-  width: 100%;
-  max-width: 270px;
+  width: 100% !important;
+  max-width: 260px !important;
   margin: 0 auto;
 }
 
-/* Bingkai Estetik Ala Polaroid pada Kamera & Hasil Foto */
+/* Bingkai Estetik Ala Polaroid */
 .cam-box {
   position: relative;
-  width: 100%;
-  height: 380px !important; /* Diubah jadi lebih tinggi (sebelumnya 190px) */
-  background: #ffffff;
+  width: 100% !important;
+  height: 350px !important;
+  background: #000000;
   border: 6px solid #FAF6ED !important;
   border-radius: 16px !important;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), inset 0 0 10px rgba(0, 0, 0, 0.1) !important;
-  padding: 4px;
+  padding: 0px !important;
 }
 
+/* Video & Hasil Foto Menyeluruh Proporsional di Kotak yang Sama */
 #booth-video, #booth-result {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
   display: block;
   border-radius: 10px;
 }
@@ -471,34 +476,34 @@ img {
 
 .booth-watermark {
   position: absolute;
-  bottom: 10px !important;
+  bottom: 12px !important;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(139, 38, 62, 0.9) !important;
+  background: rgba(139, 38, 62, 0.85) !important;
   color: #fff;
-  padding: 5px 8px !important;
+  padding: 8px 12px !important;
   border-radius: 10px !important;
   border: 1px dashed #fef3d6;
   text-align: center;
   pointer-events: none;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  width: 88% !important;
+  width: 85% !important;
   z-index: 10;
 }
 .booth-watermark span { font-size: 9px; display: block; letter-spacing: 1px; color: #fef3d6; }
 .booth-watermark strong { font-family: 'Poppins', sans-serif; font-size: 12px; display: block; line-height: 1.1; }
 .booth-watermark small { font-size: 8px; opacity: 0.9; }
 
-/* Panel Kontrol Tombol Ala Kamera HP di Bawah */
+/* Panel Kontrol Tombol di Bawah */
 .camera-controls {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 12px;
   margin-top: 15px;
-  padding: 0 10px;
+  flex-wrap: wrap;
 }
 
-/* Tombol Shutter / Jepret Bundar di Tengah */
 .shutter-btn {
   width: 65px;
   height: 65px;
@@ -522,7 +527,6 @@ img {
   border-radius: 50%;
 }
 
-/* Tombol Samping (Buka / Putar Kamera) */
 .control-btn-left, .control-btn-right {
   width: 42px;
   height: 42px;
