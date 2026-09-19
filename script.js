@@ -26,7 +26,6 @@ function toggleMusic() {
   }
 }
 
-// Salin Nomor Rekening
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
     alert("Nomor rekening berhasil disalin!");
@@ -90,8 +89,7 @@ setInterval(createHeart, 350);
 let mediaStream = null;
 let useFrontCamera = true;
 
-// URL Web App Google Apps Script terbaru
-const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxHmbv1Dj8WdO74T-MRDx-vXvFu4Od-FOS-A4dBTEoI_2UTekLPV_Exe3zWhi-nmAZc/exec";
+const GOOGLE_DRIVE_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzguxGoa0NEDO-IKR19ckF4vUCd5L3UBQ3CYR3SViF_3xrkXOsBh0EsieUI1i1HiwrR/exec";
 
 async function startCamera() {
   const video = document.getElementById('booth-video');
@@ -153,12 +151,29 @@ function capturePhoto() {
 
   if (!video.srcObject) return;
 
-  canvas.width = video.videoWidth || 1080;
-  canvas.height = video.videoHeight || 1350;
+  // PAKSA UKURAN KANVAS MENJADI VERTIKAL/POTRET (4:5) AGAR TIDAK JADI 4:3 DI DRIVE
+  canvas.width = 1080;
+  canvas.height = 1350;
   const ctx = canvas.getContext('2d');
 
-  // Gambar ke canvas secara normal tanpa mirror
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // Ambil bagian tengah video agar pas dipotong vertikal (mencegah gepeng/distorsi)
+  const vWidth = video.videoWidth;
+  const vHeight = video.videoHeight;
+  const targetAspect = 1080 / 1350;
+  let sWidth = vWidth;
+  let sHeight = vWidth / targetAspect;
+  let sX = 0;
+  let sY = (vHeight - sHeight) / 2;
+
+  if (sHeight > vHeight) {
+    sHeight = vHeight;
+    sWidth = vHeight * targetAspect;
+    sX = (vWidth - sWidth) / 2;
+    sY = 0;
+  }
+
+  // Gambar potongan video vertikal ke kanvas
+  ctx.drawImage(video, sX, sY, sWidth, sHeight, 0, 0, canvas.width, canvas.height);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   // Tambahkan Stiker / Watermark
@@ -236,22 +251,23 @@ function handleRSVP(event) {
   const guests = guestsInput ? guestsInput.value : "1 Orang";
   const message = messageInput ? messageInput.value : "";
 
-  // Kirim data menggunakan URLSearchParams agar masuk mulus ke Google Sheets
+  // Kirim data RSVP menggunakan format JSON stabil
   if (GOOGLE_DRIVE_WEB_APP_URL && !GOOGLE_DRIVE_WEB_APP_URL.includes("URL_WEB_APP")) {
-    const rsvpData = new URLSearchParams({
+    const rsvpPayload = {
       name: name,
       attendance: attendance,
       guests: guests,
       message: message
-    });
+    };
 
     fetch(GOOGLE_DRIVE_WEB_APP_URL, {
       method: 'POST',
-      body: rsvpData
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(rsvpPayload)
     }).catch(error => console.error("Error RSVP:", error));
   }
 
-  // Tampilkan E-Card ID jika hadir
   if (attendance.toLowerCase().includes('hadir') || attendance === 'Yes') {
     const guestNameEl = document.getElementById('card-guest-name');
     const guestCountEl = document.getElementById('card-guest-count');
