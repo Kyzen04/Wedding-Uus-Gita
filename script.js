@@ -1,22 +1,28 @@
 function openInvitation() {
   const cover = document.getElementById('slide-1');
-  cover.classList.add('cover-zoom-out');
-  document.body.classList.remove('no-scroll');
+  if (cover) {
+    cover.classList.add('cover-zoom-out');
+    document.body.classList.remove('no-scroll');
+
+    setTimeout(() => {
+      cover.style.display = 'none';
+    }, 800);
+  }
 
   const music = document.getElementById('bg-music');
-  music.play().catch(e => console.log(e));
-
-  setTimeout(() => {
-    cover.style.display = 'none';
-  }, 800);
+  if (music) {
+    music.play().catch(e => console.log("Autoplay ditolak browser:", e));
+  }
 }
 
 function toggleMusic() {
   const music = document.getElementById('bg-music');
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
+  if (music) {
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
   }
 }
 
