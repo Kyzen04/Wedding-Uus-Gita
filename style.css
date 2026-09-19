@@ -225,11 +225,12 @@ img {
 /* Bunga Melayang di 4 Pojok Container HP */
 .floral-corner {
   position: absolute;
-  width: 90px;
-  height: 90px;
+  width: 75px;
+  height: 75px;
   object-fit: contain;
   pointer-events: none;
   z-index: 10;
+  mix-blend-mode: multiply;
 }
 
 .top-left { top: 0; left: 0; }
