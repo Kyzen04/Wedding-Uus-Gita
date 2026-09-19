@@ -1,464 +1,371 @@
-:root {
-  --bg-cream: #F4EFE0;
-  --maroon: #8B263E;
-  --green-olive: #5B623A;
-  --text-dark: #4A443B;
-  --font-handwritten: 'Patrick Hand', cursive;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uus & Gita Wedding</title>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-body {
-  font-family: var(--font-handwritten);
-  background-color: #2D2D2D;
-  color: var(--maroon);
-  font-size: 18px;
-}
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
 
-.no-scroll {
-  overflow: hidden;
-}
+  <!-- Container Efek Love Berjatuhan -->
+  <div id="hearts-container"></div>
 
-img {
-  max-width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
+  <!-- Audio Background -->
+  <audio id="bg-music" loop>
+    <source src="Galery/musik.mp3.mpeg" type="audio/mpeg">
+  </audio>
 
-/* Container Efek Love Berjatuhan */
-#hearts-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 90;
-  overflow: hidden;
-}
+  <!-- Tombol Musik Melayang -->
+  <button id="music-btn" class="floating-music" onclick="toggleMusic()">
+    <i class="fa-solid fa-music"></i>
+  </button>
 
-.falling-heart {
-  position: absolute;
-  top: -40px;
-  user-select: none;
-  animation: fall linear infinite;
-}
+  <!-- Bottom Navigation Bar (10 Slide) -->
+  <nav class="bottom-nav">
+    <a href="#slide-1" class="nav-item active" title="Cover"><i class="fa-solid fa-house"></i></a>
+    <a href="#slide-2" class="nav-item" title="Verse"><i class="fa-solid fa-quote-left"></i></a>
+    <a href="#slide-3" class="nav-item" title="Mempelai"><i class="fa-solid fa-user-group"></i></a>
+    <a href="#slide-4" class="nav-item" title="Kalender"><i class="fa-regular fa-calendar-days"></i></a>
+    <a href="#slide-5" class="nav-item" title="Countdown"><i class="fa-regular fa-clock"></i></a>
+    <a href="#slide-6" class="nav-item" title="Lokasi"><i class="fa-solid fa-location-dot"></i></a>
+    <a href="#slide-7" class="nav-item" title="Media"><i class="fa-solid fa-video"></i></a>
+    <a href="#slide-8" class="nav-item" title="Galeri"><i class="fa-regular fa-image"></i></a>
+    <a href="#slide-9" class="nav-item" title="RSVP"><i class="fa-regular fa-comment-dots"></i></a>
+    <a href="#slide-10" class="nav-item" title="Hadiah"><i class="fa-solid fa-gift"></i></a>
+  </nav>
 
-@keyframes fall {
-  0% { transform: translateY(-40px) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
-}
+  <!-- Konten Utama Container HP -->
+  <main id="main-content" class="main-container">
 
-/* Navigasi Melayang Bawah */
-.bottom-nav {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--maroon);
-  padding: 10px 18px;
-  border-radius: 30px;
-  display: flex;
-  gap: 12px;
-  z-index: 99;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+    <!-- Hiasan Bunga Melayang Pas di 4 Pojok Bingkai HP -->
+    <img src="Galery/bunga.png" class="floral-corner top-left" alt="Bunga Kiri Atas">
+    <img src="Galery/bunga.png" class="floral-corner top-right" alt="Bunga Kanan Atas">
+    <img src="Galery/bunga.png" class="floral-corner bottom-left" alt="Bunga Kiri Bawah">
+    <img src="Galery/bunga.png" class="floral-corner bottom-right" alt="Bunga Kanan Bawah">
 
-.nav-item {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+    <!-- SLIDE 1: Cover Utama -->
+    <section id="slide-1" class="cover-section">
+      <div class="cover-content">
+        <p class="subtitle-doodle">THE WEDDING OF</p>
+        <h1 class="main-title">Uus & Gita</h1>
+        
+        <div class="couple-photo-wrapper">
+          <img src="Galery/foto32.jpg" alt="Uus & Gita" class="couple-img">
+        </div>
 
-.nav-item.active, .nav-item:hover { color: #FFFFFF; }
+        <div class="ribbon-date">
+          <span>02.10.2026</span>
+        </div>
 
-.floating-music {
-  position: fixed;
-  bottom: 20px;
-  right: calc(50% - 215px);
-  background-color: #2D2D2D;
-  color: white;
-  border: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  z-index: 99;
-  cursor: pointer;
-}
+        <!-- Nama Tamu Undangan -->
+        <div class="guest-container">
+          <p class="guest-sub">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+          <h3 id="guest-name" class="guest-title">Tamu Undangan</h3>
+        </div>
 
-@media (max-width: 450px) {
-  .floating-music { right: 15px; }
-}
+        <p class="opening-text">
+          Tanpa mengurangi rasa hormat, kami memberikan kabar bahagia ini dan memohon restu dari Bapak/Ibu/Saudara/i untuk senantiasa mendoakan kelancaran acara pernikahan kami.
+        </p>
 
-/* Main Container HP */
-.main-container {
-  max-width: 450px;
-  margin: 0 auto;
-  background-color: var(--bg-cream);
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
+        <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+      </div>
+    </section>
 
-/* Cover Section */
-.cover-section {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--bg-cream);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-}
+    <div class="scroll-container">
 
-.cover-zoom-out {
-  transform: scale(1.2);
-  opacity: 0;
-  pointer-events: none;
-}
+      <!-- SLIDE 2: Verse / Ayat -->
+      <section id="slide-2" class="full-slide">
+        <div class="polaroid-wrapper">
+          <div class="polaroid">
+            <img src="Galery/foto37.jpg" alt="Gita">
+          </div>
+          <div class="polaroid">
+            <img src="Galery/foto38.jpg" alt="Uus">
+          </div>
+        </div>
+        <p class="initials">G + U = ♡</p>
+        <div class="rings-doodle">💍</div>
+        <h2 class="slide-title">Forever & Always</h2>
+        <p class="verse-text">
+          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..." (QS. Ar-Rum: 21)
+        </p>
+      </section>
 
-.subtitle-doodle { letter-spacing: 4px; font-size: 20px; font-weight: bold; }
-.main-title { font-size: 2.8rem; color: var(--green-olive); margin: 10px 0 20px; }
+      <!-- SLIDE 3: Groom & Bride -->
+      <section id="slide-3" class="full-slide">
+        <h2 class="slide-title">GROOM & BRIDE</h2>
 
-.couple-photo-wrapper {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 15px;
-  border: 3px solid var(--maroon);
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
-}
+        <div class="profile-card">
+          <div class="oval-frame">
+            <img src="Galery/foto23.jpg" alt="Uus Busrol karim">
+          </div>
+          <h3 class="person-name">Uus Busrol karim</h3>
+          <p class="person-sub">Son of</p>
+          <p class="parents-text">Bapak Karmin (kuming)<br>& Ibu Mamah</p>
+          <p class="ig-tag"><i class="fa-brands fa-instagram"></i> @upq.us</p>
+        </div>
 
-.couple-img { width: 100%; height: 100%; object-fit: cover; }
+        <span class="ampersand-doodle">&</span>
 
-/* Pita Tanggal & Nama Tamu */
-.ribbon-date {
-  background-color: var(--maroon);
-  color: white;
-  display: block;
-  width: fit-content;
-  margin: 0 auto 12px;
-  padding: 6px 30px;
-  border-radius: 4px;
-  font-size: 20px;
-}
+        <div class="profile-card">
+          <div class="oval-frame">
+            <img src="Galery/foto21.jpg" alt="Gita">
+          </div>
+          <h3 class="person-name">Gita</h3>
+          <p class="person-sub">Daughter of</p>
+          <p class="parents-text">Bapak Dudin cahyudin (Ade)<br>& Ibu Sri sutini</p>
+          <p class="ig-tag"><i class="fa-brands fa-instagram"></i> @</p>
+        </div>
+      </section>
 
-.guest-container {
-  display: block;
-  width: fit-content;
-  max-width: 90%;
-  margin: 0 auto 15px;
-  padding: 8px 18px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
-  border: 1px dashed var(--maroon);
-}
+      <!-- SLIDE 4: Save The Date (Calendar) -->
+      <section id="slide-4" class="full-slide">
+        <h2 class="slide-title">Save The Date</h2>
+        <div class="calendar-card">
+          <div class="calendar-header">October 2026</div>
+          <div class="calendar-grid">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            <span></span><span></span><span></span><span></span><span>1</span><span class="heart-date">2</span><span>3</span>
+            <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+            <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+            <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
+            <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+          </div>
+        </div>
+        <button class="btn-action">Add to Calendar</button>
+      </section>
 
-.guest-sub { font-size: 13px; color: var(--text-dark); margin-bottom: 2px; }
-.guest-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--maroon);
-  text-transform: capitalize;
-}
+      <!-- SLIDE 5: Counting Down & Kalender Live -->
+      <section id="slide-5" class="full-slide">
+        <h2 class="slide-title">Counting Down</h2>
+        
+        <div class="live-calendar-card">
+          <div class="cal-header">
+            <span class="cal-badge">WEDDING DAY</span>
+            <h3 class="cal-date-title">Jumat, 02 Oktober 2026</h3>
+          </div>
 
-.opening-text {
-  font-size: 15px;
-  color: var(--text-dark);
-  max-width: 320px;
-  margin: 0 auto 15px;
-  line-height: 1.4;
-}
+          <div class="countdown-grid">
+            <div class="time-box">
+              <span id="days">00</span>
+              <small>HARI</small>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="hours">00</span>
+              <small>JAM</small>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="minutes">00</span>
+              <small>MENIT</small>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-box">
+              <span id="seconds">00</span>
+              <small>DETIK</small>
+            </div>
+          </div>
+        </div>
+      </section>
 
-.btn-open, .btn-action {
-  background-color: var(--maroon);
-  color: white;
-  border: none;
-  padding: 8px 24px;
-  border-radius: 20px;
-  font-family: var(--font-handwritten);
-  font-size: 18px;
-  cursor: pointer;
-}
+      <!-- SLIDE 6: Wedding Event -->
+      <section id="slide-6" class="full-slide">
+        <div class="flower-doodle">💐</div>
+        <h2 class="slide-title">Wedding Event</h2>
 
-.scroll-container {
-  width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  position: relative;
-  z-index: 2;
-}
+        <div class="doodle-card">
+          <h3 class="card-subtitle">Akad Nikah</h3>
+          <p class="event-date">Friday, 02 October 2026</p>
+          <p><i class="fa-solid fa-location-dot icon-maroon"></i> <strong>Lokasi Akad</strong></p>
+          <p class="address-text">Jl. Teratai Dukuhpari RT18 RW 07 Desa Leuwiseeng, Kec. Panyingkiran</p>
+          <p><i class="fa-regular fa-clock icon-maroon"></i> 08:00 WIB - Selesai</p>
+          
+          <div class="dresscode-box">
+            <p>DRESSCODE</p>
+            <div class="color-dots"><span class="dot dot-cream"></span><span class="dot dot-gold"></span></div>
+          </div>
 
-.full-slide {
-  min-height: 100vh;
-  scroll-snap-align: start;
-  padding: 50px 20px 80px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
+          <div class="map-box">
+            <iframe class="map-iframe" src="https://maps.google.com/maps?q=-6.8009976,108.1724479&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+          </div>
 
-.slide-title { font-size: 2.2rem; margin-bottom: 10px; }
+          <a href="https://www.google.com/maps/search/?api=1&query=-6.8009976,108.1724479" target="_blank" class="btn-olive">View Location</a>
+        </div>
 
-/* Bunga Melayang di 4 Pojok Container HP */
-.floral-corner {
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  pointer-events: none;
-  z-index: 10;
-}
+        <div class="doodle-card">
+          <h3 class="card-subtitle">Resepsi Pernikahan</h3>
+          <p class="event-date">Minggu, 04 October 2026</p>
+          <p><i class="fa-solid fa-location-dot icon-maroon"></i> <strong>Lokasi Resepsi</strong></p>
+          <p class="address-text">Jl. Teratai Dukuhpari RT18 RW 07 Desa Leuwiseeng, Kec. Panyingkiran</p>
+          <p><i class="fa-regular fa-clock icon-maroon"></i> 11:00 WIB - Selesai</p>
+          
+          <div class="dresscode-box">
+            <p>DRESSCODE</p>
+            <div class="color-dots"><span class="dot dot-cream"></span><span class="dot dot-gold"></span></div>
+          </div>
 
-.top-left { top: 0; left: 0; }
-.top-right { top: 0; right: 0; transform: scaleX(-1); }
-.bottom-left { bottom: 0; left: 0; transform: scaleY(-1); }
-.bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+          <div class="map-box">
+            <iframe class="map-iframe" src="https://maps.google.com/maps?q=-6.8009976,108.1724479&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+          </div>
 
-/* Polaroid (Slide 2) */
-.polaroid-wrapper { display: flex; gap: 10px; justify-content: center; margin-bottom: 10px; }
-.polaroid {
-  background: white;
-  padding: 8px 8px 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transform: rotate(-5deg);
-}
-.polaroid:nth-child(2) { transform: rotate(5deg); }
-.polaroid img { width: 110px; height: 130px; object-fit: cover; }
-.verse-text { font-size: 14px; color: var(--text-dark); line-height: 1.4; margin-top: 10px; }
+          <a href="https://www.google.com/maps/search/?api=1&query=-6.722021,108.291161" target="_blank" class="btn-olive">View Location</a>
+        </div>
+      </section>
 
-/* Profile Card (Slide 3) */
-.oval-frame {
-  width: 120px;
-  height: 150px;
-  border: 2px dashed var(--maroon);
-  border-radius: 50%;
-  padding: 4px;
-  margin: 0 auto 5px;
-}
-.oval-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.person-name { font-size: 1.6rem; }
-.person-sub, .parents-text { font-size: 14px; color: var(--text-dark); }
-.ig-tag { font-size: 13px; color: var(--green-olive); }
+      <!-- SLIDE 7: Media Event -->
+      <section id="slide-7" class="full-slide">
+        <div class="camera-doodle">📷</div>
+        <h2 class="slide-title">Media Event</h2>
 
-/* Calendar Card (Slide 4) */
-.calendar-card {
-  border: 2px solid var(--maroon);
-  border-radius: 20px;
-  padding: 15px;
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 15px;
-  background: rgba(250, 246, 237, 0.85);
-}
-.calendar-header { background: var(--maroon); color: white; padding: 4px 20px; border-radius: 15px; display: inline-block; margin-bottom: 10px; }
-.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 14px; color: var(--text-dark); }
-.heart-date { background-color: var(--maroon); color: white; border-radius: 50%; display: inline-block; }
+        <div class="media-card">
+          <i class="fa-solid fa-video icon-large"></i>
+          <h3>Live Streaming</h3>
+          <p>Bergabunglah dengan kami secara virtual</p>
+          <button class="btn-olive">Tonton Sekarang <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </div>
 
-/* Envelope Countdown (Slide 5) */
-.envelope-wrapper { margin-top: 20px; }
-.envelope-body { width: 260px; height: 150px; background-color: var(--maroon); border-radius: 10px; display: flex; justify-content: center; align-items: center; }
-.envelope-card { background: var(--bg-cream); padding: 15px 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.countdown-row { display: flex; gap: 6px; font-size: 1.2rem; font-weight: bold; }
-.countdown-row small { display: block; font-size: 8px; }
+        <div class="media-card">
+          <i class="fa-brands fa-instagram icon-large"></i>
+          <h3>Wedding Filter</h3>
+          <p>Abadikan momen bahagiamu</p>
+          <button class="btn-olive">Use Instagram Filter <i class="fa-brands fa-instagram"></i></button>
+        </div>
+      </section>
 
-/* Doodle Cards (Slide 6 & 7) */
-.doodle-card, .media-card {
-  border: 3px solid var(--maroon);
-  border-radius: 25px 5px 25px 5px;
-  padding: 15px;
-  width: 100%;
-  max-width: 380px;
-  margin-bottom: 15px;
-  background-color: rgba(250, 246, 237, 0.9);
-}
+      <!-- SLIDE 8: Our Memories -->
+      <section id="slide-8" class="full-slide">
+        <h2 class="slide-title">Our Memories</h2>
+        <div class="gallery-grid">
+          <div class="grid-item full-width">
+            <img src="Galery/foto28.jpg" alt="Memory 1">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/foto24.jpg" alt="Memory 2">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/foto22.jpg" alt="Memory 3">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/foto18.jpg" alt="Memory 4">
+          </div>
+          <div class="grid-item portrait">
+            <img src="Galery/foto30.jpg" alt="Memory 5">
+          </div>
+        </div>
+      </section>
 
-#slide-6 { justify-content: flex-start; padding-top: 40px; padding-bottom: 90px; overflow-y: auto; }
-.map-box { width: 100%; height: 130px; border-radius: 15px; overflow: hidden; border: 2px solid var(--maroon); margin: 10px 0; }
-.map-iframe { width: 100%; height: 100%; border: 0; }
-.btn-olive { background-color: var(--green-olive); color: white; border: none; padding: 6px 16px; border-radius: 12px; font-family: var(--font-handwritten); font-size: 16px; cursor: pointer; text-decoration: none; display: inline-block; }
+      <!-- SLIDE 9: Wishes / RSVP -->
+      <section id="slide-9" class="full-slide">
+        <h2 class="slide-title">Wishes</h2>
+        <p class="sub-text">Confirm your presence & send prayers.</p>
 
-/* Form RSVP (Slide 9) */
-.rsvp-form { border: 2px solid var(--maroon); padding: 15px; width: 100%; text-align: left; background: rgba(250, 246, 237, 0.9); }
-.rsvp-form label { font-size: 11px; color: var(--maroon); display: block; margin-top: 8px; }
-.rsvp-form input, .rsvp-form select, .rsvp-form textarea { width: 100%; padding: 6px; border: 1px solid #ccc; background-color: #FAF6ED; font-family: var(--font-handwritten); font-size: 14px; margin-top: 2px; }
+        <form class="rsvp-form" id="rsvp-form" onsubmit="handleRSVP(event)">
+          <label>FULL NAME</label>
+          <input type="text" id="rsvp-name" placeholder="Type your name" required>
 
-/* Gallery Grid (Slide 8) */
-#slide-8 { justify-content: flex-start; padding-top: 40px; overflow-y: auto; }
-.gallery-grid { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 380px; margin-top: 15px; }
-.grid-item { border-radius: 12px; overflow: hidden; position: relative; z-index: 2; }
-.grid-item.full-width { flex: 1 1 100%; aspect-ratio: 16 / 9; height: auto; }
-.grid-item.portrait { flex: 1 1 calc(50% - 5px); aspect-ratio: 3 / 4; height: auto; }
-.grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 12px; }
+          <label>ATTENDANCE</label>
+          <select id="rsvp-attendance">
+            <option value="Yes">Ya, Saya Akan Hadir</option>
+            <option value="No">Maaf, Saya Tidak Bisa Hadir</option>
+          </select>
 
-/* Styling Kartu ATM Fisik (Slide 10) */
-.atm-card {
-  position: relative;
-  width: 100%;
-  max-width: 340px;
-  height: 190px;
-  border-radius: 16px;
-  padding: 20px;
-  margin: 0 auto 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
+          <label>GUESTS</label>
+          <select id="rsvp-guests">
+            <option value="1 Orang">1 Person</option>
+            <option value="2 Orang">2 Persons</option>
+          </select>
 
-.bca-bg { background: linear-gradient(135deg, #ffffff 0%, #e3edf7 100%); }
-.mandiri-bg { background: linear-gradient(135deg, #f8f9fa 0%, #e2e8f0 100%); }
-.card-chip { width: 44px; height: 32px; background: linear-gradient(135deg, #f3d078, #d4af37); border-radius: 6px; border: 1px solid #b8972e; }
-.bank-logo-img { position: absolute; top: 18px; right: 20px; width: 85px; height: auto; object-fit: contain; }
-.card-details { margin-top: 15px; }
-.holder-name { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #2d3748; margin-bottom: 2px; }
-.rekening-num { font-family: 'Poppins', sans-serif; font-size: 15px; letter-spacing: 1.5px; color: #4a5568; }
-.btn-copy-card { position: absolute; bottom: 18px; right: 18px; background: rgba(0, 0, 0, 0.45); color: #ffffff; border: none; padding: 6px 14px; border-radius: 20px; font-family: 'Poppins', sans-serif; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+          <label>MESSAGE</label>
+          <textarea id="rsvp-message" rows="3" placeholder="Write your prayers..."></textarea>
 
-/* MODAL POPUP E-CARD */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
+          <button type="submit" class="btn-action">Send Wish</button>
+        </form>
+      </section>
 
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
+      <!-- SLIDE 10: Wedding Gift -->
+      <section id="slide-10" class="full-slide">
+        <div class="gift-doodle">🎁</div>
+        <h2 class="slide-title">Wedding Gift</h2>
+        <p class="opening-text">
+          Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
+        </p>
 
-.modal-content {
-  background: #FAF6ED;
-  padding: 20px;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 350px;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
+        <div class="atm-card bca-bg">
+          <div class="card-chip"></div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" class="bank-logo-img" alt="BCA">
+          <div class="card-details">
+            <p class="holder-name">GITA</p>
+            <p id="rekening-bca" class="rekening-num">901743365661</p>
+          </div>
+          <button class="btn-copy-card" onclick="copyText('901743365661')">
+            Salin <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
 
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: var(--maroon);
-  cursor: pointer;
-}
+        <div class="atm-card mandiri-bg">
+          <div class="card-chip"></div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" class="bank-logo-img" alt="Mandiri">
+          <div class="card-details">
+            <p class="holder-name">UUS BUSROL KARIM</p>
+            <p id="rekening-mandiri" class="rekening-num">901862749761</p>
+          </div>
+          <button class="btn-copy-card" onclick="copyText('901862749761')">
+            Salin <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+      </section>
 
-.id-card-body {
-  background: linear-gradient(135deg, #ffffff 0%, #f4efe0 100%);
-  border: 2px dashed var(--maroon);
-  border-radius: 16px;
-  padding: 20px;
-  margin-top: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+    </div>
+  </main>
 
-.card-header {
-  border-bottom: 1px solid rgba(139, 38, 62, 0.2);
-  padding-bottom: 10px;
-  margin-bottom: 12px;
-}
+  <!-- MODAL POPUP E-ID CARD OTOMATIS -->
+  <div id="idcard-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      
+      <div id="e-card" class="id-card-body">
+        <div class="card-header">
+          <p class="card-sub">WEDDING PASS</p>
+          <h3 class="card-title">Uus & Gita</h3>
+        </div>
+        
+        <div class="card-guest-info">
+          <p class="info-label">GUEST NAME</p>
+          <h4 id="card-guest-name">Nama Tamu</h4>
+          
+          <div class="card-row">
+            <div>
+              <p class="info-label">GUESTS</p>
+              <p id="card-guest-count" class="info-val">1 Person</p>
+            </div>
+            <div>
+              <p class="info-label">DATE</p>
+              <p class="info-val">02.10.2026</p>
+            </div>
+          </div>
+        </div>
 
-.card-sub {
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--text-dark);
-}
+        <div class="card-qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=UusGitaWedding" alt="QR Code">
+          <p class="qr-text">Tunjukkan kartu ini saat tiba di lokasi</p>
+        </div>
+      </div>
 
-.card-title {
-  font-size: 1.5rem;
-  color: var(--maroon);
-}
+      <p class="save-tip">Silakan Screenshot E-Card ini sebagai bukti kehadiran.</p>
+    </div>
+  </div>
 
-.card-guest-info {
-  text-align: left;
-  margin-bottom: 15px;
-}
-
-.info-label {
-  font-size: 10px;
-  color: var(--text-dark);
-  margin-top: 6px;
-}
-
-#card-guest-name {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  color: var(--maroon);
-}
-
-.card-row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.info-val {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: #333;
-}
-
-.card-qr-box {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(139, 38, 62, 0.2);
-}
-
-.card-qr-box img {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 5px;
-  border-radius: 6px;
-}
-
-.qr-text {
-  font-size: 11px;
-  color: var(--text-dark);
-}
-
-.save-tip {
-  font-size: 12px;
-  color: var(--maroon);
-  margin-top: 12px;
-}
+  <script src="script.js"></script>
+</body>
+</html>
